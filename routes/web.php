@@ -24,6 +24,19 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::get('u/{username}','\App\Http\Controllers\ScaffoldInterface\UserController@view');
 
+
+        //cadmodel Routes
+        Route::group(['middleware'=> 'web'],function(){
+            Route::resource('cadmodel','\App\Http\Controllers\CadmodelController');
+            Route::post('cadmodel/{id}/update','\App\Http\Controllers\CadmodelController@update');
+            Route::post('cadmodel/{id}/updatemodel','\App\Http\Controllers\CadmodelController@updatemodel');
+            Route::get('cadmodel/{id}/delete','\App\Http\Controllers\CadmodelController@destroy');
+            Route::get('cadmodel/{id}/deleteMsg','\App\Http\Controllers\CadmodelController@DeleteMsg');
+        });
+
+
+
+
 //auto3dprintmaterial Routes
         Route::resource('auto3dprintmaterial', '\App\Http\Controllers\Auto3dprintmaterialController');
         Route::post('auto3dprintmaterial/{id}/update', '\App\Http\Controllers\Auto3dprintmaterialController@update');
@@ -77,4 +90,9 @@ Route::get('{mystub}', '\App\Http\Controllers\SitenavigationController@showp');
 Route::get('printerinterface/gcode', '\App\Http\Controllers\Auto3dprintqueueController@PrinterReceiveGcode');
 Route::get('auto3dprintqueue/{id}/thumb.png', '\App\Http\Controllers\Auto3dprintqueueController@showPNG');
 
+Route::get('test',function(){
+    return view('partials.searchUsers');
+});
+
 Route::post('searchUsers','ScaffoldInterface\UserController@searchUser');
+
