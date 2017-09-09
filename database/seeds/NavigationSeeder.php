@@ -17,7 +17,15 @@ class NavigationSeeder extends Seeder
             'LinkImage'=>'',
             'LinkLoginReqd'=>'',
             'LinkURL'=>'auto3dprintqueue',
-            'LinkDescription'=>'Best part of the site',
+            'LinkDescription'=>'Check out the queued 3D prints',
+        ]);
+
+        \App\Sitenavigation::create([
+            'LinkText'=>'Web CAD',
+            'LinkImage'=>'',
+            'LinkLoginReqd'=>'',
+            'LinkURL'=>'cadmodel',
+            'LinkDescription'=>'Create and edit your model',
         ]);
 
     }
