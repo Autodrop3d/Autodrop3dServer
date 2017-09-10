@@ -35,3 +35,11 @@ cd node*
 ./configure
 make
 sudo make install
+
+
+#THIS IS TO SET AUTOLOGIN SO THAT OPENSCAD CAN CONNECT TO DISPLAY
+#YOU MAY NEED TO CONNECT TO VIRTUAL DISPLAY AND RUN `xhost +` WITH DISPLAY OPENSCAD
+
+echo "autologin-user=drop" >> /usr/share/lightdm/lightdm.conf.d/60-xubuntu.conf
+
+#THIS ASSUMES THAT xubuntu-desktop HAS BEEN INSTALLED.

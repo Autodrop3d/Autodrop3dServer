@@ -458,6 +458,7 @@ function SliceModel($id)
         $openScadPath = '/usr/bin/openscad';
         $storagePath = '../storage/app/3dPrintFiles/';
         $SlicerConfigPath = '../Slic3r/test.ini';
+        putenv("DISPLAY=:0.0");
     }
 
     if (env('APP_PLATFORM') == 'MAC') {
