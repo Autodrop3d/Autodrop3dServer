@@ -1,9 +1,19 @@
 #!/bin/bash
 sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
-sudo apt update
-apt -y install nginx git php7.1 php7.1-mysql php7.1-fpm php7.1-mbstring php7.1-xml php7.1-curl php7.1-cli mysql-server freeglut3 slic3r g++ make
+
 add-apt-repository ppa:openscad/releases
+
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+sudo apt update
+
+
+
+apt -y install curl nginx git php7.1 php7.1-mysql php7.1-fpm php7.1-mbstring php7.1-xml php7.1-curl php7.1-cli mysql-server freeglut3 slic3r g++ make
+
+
 apt update
 apt install openscad
 mkdir -p /var/www/html
