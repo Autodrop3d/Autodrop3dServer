@@ -15,21 +15,23 @@ require('laravel-elixir-vue-2');
 
 elixir(function(mix) {
     mix.copy(
-        'node_modules/fullcalendar/dist/fullcalendar.css',
-        'resources/assets/css'
-    ).copy(
-        'node_modules/fullcalendar/dist/fullcalendar.js',
-        'public/js'
-    ).copy(
         'node_modules/moment/moment.js',
         'public/js'
     ).copy(
-        'resources/assets/js/bootstrap-datetimepicker.min.js',
+        'node_modules/startbootstrap-new-age/css/new-age.min.css',
+        'resources/assets/css'
+    ).copy(
+        'node_modules/startbootstrap-new-age/js/new-age.min.js',
         'public/js'
     );
 
-    mix.styles('fullcalendar.css');
-    mix.styles('bootstrap-datetimepicker.min.css');
+    mix.copy(
+        'node_modules/startbootstrap-new-age/',
+        'public/',
+        false
+    );
+
+    mix.styles('new-age.min.css');
 
     mix.sass('app.scss')
        .webpack('app.js');
