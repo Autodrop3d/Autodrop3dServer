@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>New Age - Start Bootstrap Theme</title>
+    <title>Autodrop3D: Autonomous 3D Printing</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,12 +45,22 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
+            <a class="navbar-brand page-scroll" href="#page-top"><!--INSERT TEXT FOR TOP CORNER HERE.--></a>
+            <!--<a class="navbar-brand page-scroll" href="#page-top">Autodrop3d</a>-->
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="/auto3dprintqueue">The Queue</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/cadmodel">Web-based CAD</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="https://github.com/autodrop3d">The Code</a>
+                </li>
                 <li>
                     <a class="page-scroll" href="#download">Download</a>
                 </li>
@@ -73,18 +83,19 @@
             <div class="col-sm-7">
                 <div class="header-content">
                     <div class="header-content-inner">
-                        <h1>New Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!</h1>
-                        <a href="#download" class="btn btn-outline btn-xl page-scroll">Start Now for Free!</a>
+                        <p><img class="img img-responsive col-xs-12 col-sm-11" src="/img/logo-strip-w.png"></p>
+                        <h1 class="col-xs-12">The Autodrop3d platform allows continous 3D printing with zero human interaction.</h1>
+                        <a href="#download" class="btn btn-outline btn-xl page-scroll">Find out how!</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-5">
                 <div class="device-container">
-                    <div class="device-mockup iphone6_plus portrait white">
+                    <div class="device-mockup macbook_2017 portrait white">
                         <div class="device">
                             <div class="screen">
                                 <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                <img src="img/demo-screen-1.jpg" class="img-responsive" alt="">
+                                <img src="img/demo-screen-2.png" class="img-responsive" alt="">
                             </div>
                             <div class="button">
                                 <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -181,6 +192,7 @@
     <div class="cta-content">
         <div class="container">
             <h2>Stop waiting.<br>Start building.</h2>
+            <p style="color:white;">From downtown New London, Connecticut to the shores of Waikiki. From the Golden Gate Bridge to the European countryside. If you have internet access, you can design and queue your designs to be ready when you return.</p>
             <a href="#contact" class="btn btn-outline btn-xl page-scroll">Let's Get Started!</a>
         </div>
     </div>
@@ -206,7 +218,7 @@
 
 <footer>
     <div class="container">
-        <p>&copy; 2016 Start Bootstrap. All Rights Reserved.</p>
+        <p>&copy; 2017 Autodrop3d</p>
         <ul class="list-inline">
             <li>
                 <a href="#">Privacy</a>
