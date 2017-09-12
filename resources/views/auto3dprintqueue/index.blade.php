@@ -65,6 +65,9 @@
                                 <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning btn-xs'
                                    data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=true'><i
                                             class='material-icons'>Approve</i></a>
+                                <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning btn-xs'
+                                   data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=false'><i
+                                            class='material-icons'>Unapprove</i></a>
                                 </div>
                             </td>
                         </tr>
