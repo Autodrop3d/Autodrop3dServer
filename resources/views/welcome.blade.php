@@ -80,27 +80,12 @@
 <header>
     <div class="container">
         <div class="row">
-            <div class="col-sm-7">
+            <div class="col-sm-12">
                 <div class="header-content">
                     <div class="header-content-inner">
-                        <p><img class="img img-responsive col-xs-12 col-sm-11" src="/img/logo-strip-w.png"></p>
-                        <h1 class="col-xs-12">The Autodrop3d platform allows continous 3D printing with zero human interaction.</h1>
-                        <a href="#download" class="btn btn-outline btn-xl page-scroll">Find out how!</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-5">
-                <div class="device-container">
-                    <div class="device-mockup macbook_2017 portrait white">
-                        <div class="device">
-                            <div class="screen">
-                                <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                <img src="img/demo-screen-2.png" class="img-responsive" alt="">
-                            </div>
-                            <div class="button">
-                                <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                            </div>
-                        </div>
+                        <p><img class="img img-responsive col-xs-12 col-sm-11" src="/img/logo-strip.png"></p>
+                        <h1 class="col-xs-12">An open-source platform allowing continous 3D printing with zero human interaction.</h1>
+                        <a href="#download" class="btn btn-outline btn-xl page-scroll">Check it out!</a>
                     </div>
                 </div>
             </div>
@@ -130,7 +115,6 @@
                 <div class="section-heading">
                     <h2>Unlimited Features, Unlimited Fun</h2>
                     <p class="text-muted">Check out what you can do with this app theme!</p>
-                    <hr>
                 </div>
             </div>
         </div>
@@ -193,7 +177,7 @@
         <div class="container">
             <h2>Stop waiting.<br>Start building.</h2>
             <p style="color:white;">From downtown New London, Connecticut to the shores of Waikiki. From the Golden Gate Bridge to the European countryside. If you have internet access, you can design and queue your designs to be ready when you return.</p>
-            <a href="#contact" class="btn btn-outline btn-xl page-scroll">Let's Get Started!</a>
+            <a href="#contact" class="btn-w btn-outline-w btn-xl page-scroll">Let's Get Started!</a>
         </div>
     </div>
     <div class="overlay"></div>
