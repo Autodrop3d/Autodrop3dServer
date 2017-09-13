@@ -440,8 +440,8 @@ function SliceModel($id)
 
 
     $gensupport = "";
-    if ($auto3dprintqueue->genenerateSupport == 1) {
-        $gensupport = "  --support-material  ";
+    if ($auto3dprintqueue->genenerateSupport != 1) {
+        $gensupport = "  -s supportAngle=-1 -s supportEverywhere=0  ";
     }
 
 
@@ -449,15 +449,15 @@ function SliceModel($id)
         $slicerPath = '..\\slic3r\\slic3r-console.exe';
         $openScadPath = '..\\slic3r\\openscad\\openscad.com';
         $storagePath = '..\\storage\\app\\3dPrintFiles\\';
-        $SlicerConfigPath = '..\\slic3r\\test.ini';
+        $SlicerConfigPath = '..\\slic3r\\cura.ini';
     }
 
 
     if (env('APP_PLATFORM') == 'LINUX') {
         $slicerPath = '/usr/bin/slic3r';
         $openScadPath = '/usr/bin/openscad';
-        $storagePath = '../storage/app/3dPrintFiles/';
-        $SlicerConfigPath = '../Slic3r/test.ini';
+        $storagePath = '/var/www/html/storage/app/3dPrintFiles/';
+        $SlicerConfigPath = '/var/www/html/Slic3r/cura.ini';
         putenv("DISPLAY=:0.0");
     }
 
@@ -465,43 +465,53 @@ function SliceModel($id)
         $slicerPath = '/Applications/Slic3r.app/Contents/MacOS/slic3r';
         $openScadPath = '/Applications/OpenSCAD.app/Contents/MacOS/openscad';
         $storagePath = '../storage/app/3dPrintFiles/';
-        $SlicerConfigPath = '../Slic3r/test.ini';
+        $SlicerConfigPath = '../Slic3r/cura.ini';
     }
 
-
     $OpenScadThumnailGen = $openScadPath . " " . $storagePath . $auto3dprintqueue->id . ".scad -o " . $storagePath . $auto3dprintqueue->id . ".png";
-    $RunSlicerToSlice = $slicerPath . " " . $storagePath . $auto3dprintqueue->id . ".stl  --load \"" . $SlicerConfigPath . "\"  --fill-density " . $auto3dprintqueue->Infill . $gensupport . "  --print-center 0,0";
-    $runSlcerForDimensions = $slicerPath . " " . $storagePath . $auto3dprintqueue->id . ".stl --info --load \"" . $SlicerConfigPath . "\"  --fill-density " . $auto3dprintqueue->Infill . $gensupport . "  --print-center 0,0";
+//    $RunSlicerToSlice = $slicerPath . " " . $storagePath . $auto3dprintqueue->id . ".stl  --load \"" . $SlicerConfigPath . "\"  --fill-density " . $auto3dprintqueue->Infill . $gensupport . "  --print-center 0,0";
+
+	$RunSlicerToSlice = "CuraEngine -v -c ". $SlicerConfigPath ." -s posx=0 -s posy=0 ". $gensupport ." -o " . $storagePath . $auto3dprintqueue->id .".gcode " . $storagePath . $auto3dprintqueue->id .".stl    2>&1";
+
 
 
     $OpenScadResult = shell_exec($OpenScadThumnailGen);
     $slicerResult = shell_exec($RunSlicerToSlice);
-    $slicerDimensions = shell_exec($runSlcerForDimensions);
+
+	
+	
+	//system($RunSlicerToSlice, $slicerResult);
+	
+
+
+    //$slicerDimensions = shell_exec($runSlcerForDimensions);
 
 //testing for platform command functionality. This line should remain commented out in production.
 //dd($OpenScadResult, $slicerResult, $slicerDimensions, $OpenScadThumnailGen, $RunSlicerToSlice, $runSlcerForDimensions);
 
 
 //Get Dimension of print to check bed size
-    $slicerDimensions = strtoupper($slicerDimensions);
-    $slicerDimensions = str_replace("\n", " ", $slicerDimensions);
+    $slicerDimensions = strtoupper($slicerResult);
 
 
     $auto3dprintqueue1 = Auto3dprintqueue::findOrfail($auto3dprintqueue->id);
-    $auto3dprintqueue1->SlicerResults = $slicerDimensions;
+    $auto3dprintqueue1->SlicerResults = $slicerResult;
 
-    $pieces = array_filter(explode(" ", $slicerDimensions));
+    $pieces = array_filter(explode("\n", $slicerResult));
+	
 
-    $auto3dprintqueue1->SizeX = intval(str_after($pieces[19], "X="));
-    $auto3dprintqueue1->SizeY = intval(str_after($pieces[20], "Y="));
-    $auto3dprintqueue1->SizeZ = intval(str_after($pieces[21], "Z="));
+	
+	$slicerDimensions = $pieces[21];
+	
+	$Sizepieces = array_filter(explode(" ", $slicerDimensions ));
+
+    $auto3dprintqueue1->SizeX = intval($Sizepieces[3] );
+    $auto3dprintqueue1->SizeY = intval($Sizepieces[4] );
+    $auto3dprintqueue1->SizeZ = intval($Sizepieces[5] );
 
 //get filament quanity
-    $pieces = trim(array_filter(explode(":", $slicerResult))[1]);
-    $pieces = str_replace("mm", "", $pieces);
-    $pieces = trim(array_filter(explode(" ", $pieces))[0]);
 
-    $auto3dprintqueue1->filament_used = intval($pieces);
+    $auto3dprintqueue1->filament_used = intval(trim(array_filter(explode(" ", $pieces[42]))[1]));
     $auto3dprintqueue1->save();
 
 }
