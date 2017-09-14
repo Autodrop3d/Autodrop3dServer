@@ -97,12 +97,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h2 class="section-heading">Discover what all the buzz is about!</h2>
-                <p>Our app is available on any mobile device! Download now to get started!</p>
-                <div class="badges">
-                    <a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
-                    <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>
-                </div>
+                <h2 class="section-heading">Sign up for Autodrop3d news!</h2>
+                    <div class="form-group">
+                        <input id="emailAddress" name = "emailAddress" type="text" class="form-control" placeholder="Email Address">
+                    </div>
+                    <button type="button" class = 'btn-w btn-outline-w btn-sm email' onclick="emailSubmit()"> <i class="fa fa-envelope-o"></i> Sign Up</button>
+                <div id="contactFeedback"></div>
             </div>
         </div>
     </div>
@@ -232,6 +232,29 @@
 
 <!-- Theme JavaScript -->
 <script src="js/new-age.min.js"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<script>
+    $(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    });
+
+    function emailSubmit() {
+        $.post('{!! url('contactAjax') !!}',
+            {emailAddress: $('#emailAddress').val()
+            }, provideFeedback);
+        return false;
+    }
+
+    function provideFeedback(data) {
+        var feedback = $('#contactFeedback');
+        feedback.val(data);
+        return false;
+    }
+</script>
 
 </body>
 

@@ -34,6 +34,9 @@ a:hover,
 a:focus {
     color: #fcbd20;
 }
+button.email {
+    background: rgba(0, 0, 0, 0);
+}
 hr {
     max-width: 100px;
     margin: 25px auto 0;

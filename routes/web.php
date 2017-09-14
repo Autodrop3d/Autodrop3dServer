@@ -19,6 +19,15 @@ Route::group(['middleware' => 'web'], function () {
 
     Auth::routes();
 
+    //contactinfo Routes
+    Route::post('contactAjax','\App\Http\Controllers\ContactinfoController@storeAjax');
+    Route::group(['middleware'=> 'auth'],function(){
+        Route::resource('contactinfo','\App\Http\Controllers\ContactinfoController');
+        Route::post('contactinfo/{id}/update','\App\Http\Controllers\ContactinfoController@update');
+        Route::get('contactinfo/{id}/delete','\App\Http\Controllers\ContactinfoController@destroy');
+        Route::get('contactinfo/{id}/deleteMsg','\App\Http\Controllers\ContactinfoController@DeleteMsg');
+    });
+
 //these routes require the user to be logged in.
     Route::group(['middleware' => ['auth']], function () {
 
@@ -34,7 +43,6 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('cadmodel/{id}/delete','\App\Http\Controllers\CadmodelController@destroy');
             Route::get('cadmodel/{id}/deleteMsg','\App\Http\Controllers\CadmodelController@DeleteMsg');
         });
-
 
 
 
@@ -96,4 +104,3 @@ Route::get('test',function(){
 });
 
 Route::post('searchUsers','ScaffoldInterface\UserController@searchUser');
-
