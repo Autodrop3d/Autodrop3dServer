@@ -97,7 +97,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h2 class="section-heading">Sign up for Autodrop3d news!</h2>
+                <h2 class="section-heading">Discover what all the buzz is about!</h2>
+                <p>Sign up for email updates about Autodrop3d</p>
                     <div class="form-group">
                         <input id="emailAddress" name = "emailAddress" type="text" class="form-control" placeholder="Email Address">
                     </div>
