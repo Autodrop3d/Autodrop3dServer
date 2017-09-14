@@ -1,11 +1,9 @@
-# Spark Maker Space Management System (SMSMS for short)
+# Autodrop3D server. Code seperated from SMSMS
 
-The SMSMS is written in PHP using the Laravel Framework
+The Autodrop3D is written in PHP using the Laravel Framework
 
-It has been developed for use at the Spark MakerSpace. http://spark.coop
-
-It's long-term functionality goals include management of membership, billing, building security, automated 3D printers, email, and the public-facing website.
-
+Autodrop3dD provides a web base queue to manage a fleet of 3d printers. 
+Autodrop 3d manages 3d model slicing, comunication with 3d printer client scripts and managment of CAD model data. 
 
 The project is licensed under the MIT License (see LICENSE.MD)
 
