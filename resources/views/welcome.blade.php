@@ -140,7 +140,7 @@
                             <div class="feature-item">
                                 <img  SRC="img/CAD.png" style="  width: 100%;height: auto;"></img>
                                 <h3>Browser Based CAD</h3>
-                                <p class="text-muted">We integrate a javascript-based parametric 3D modeler. No need to purchase or license expensive CAD software.</p>
+                                <p class="text-muted">We integrate jSketcher a javascript-based parametric 3D modeler. No need to purchase or license expensive CAD software.</p>
                             </div>
                         </div>
                         <div class="col-md-6">
