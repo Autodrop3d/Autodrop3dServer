@@ -113,8 +113,8 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="section-heading">
-                    <h2>Unlimited Features, Unlimited Fun</h2>
-                    <p class="text-muted">Perfect for schools, Businesses, Maker Spaces or just personal use</p>
+                    <h2>Look at our amazing features!</h2>
+                    <p class="text-muted">Perfect for schools, businesses, makerspaces or personal use</p>
                 </div>
             </div>
         </div>
@@ -140,14 +140,14 @@
                             <div class="feature-item">
                                 <img  SRC="img/CAD.png" style="  width: 100%;height: auto;"></img>
                                 <h3>Browser Based CAD</h3>
-                                <p class="text-muted">We intergrate a javascript parametric 3D modeler. No need to purchase cad software.</p>
+                                <p class="text-muted">We integrate a javascript-based parametric 3D modeler. No need to purchase or license expensive CAD software.</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="feature-item">
                                 <img  SRC="img/queue.png" style="  width: 100%;height: auto;"></img>
                                 <h3>Multi User Print Queue</h3>
-                                <p class="text-muted">Upload your files and receice email notification when they are printed.</p>
+                                <p class="text-muted">Simply upload your files and receive email notification when they are printed.</p>
                             </div>
                         </div>
 
@@ -159,15 +159,15 @@
                                 <i class="fa fa-3x fa-windows"></i>
                                 <i class="fa fa-3x fa-apple"></i>
                                 <i class="fa fa-3x fa-linux"></i>
-                                <h3>Runs in a web browser</h3>
-                                <p class="text-muted">Cross Platform compadibility</p>
+                                <h3>Runs in the Browser</h3>
+                                <p class="text-muted">Cross-platform Compatibility</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="feature-item">
                                 <i class="icon-lock-open text-primary"></i>
-                                <h3>Open Source</h3>
-                                <p class="text-muted">It's MIT licenced. You can role your own solutions. No cloud or vendor tie in. </p>
+                                <h3>Open Source Awesomeness</h3>
+                                <p class="text-muted">It's MIT licenced. You can roll your own solutions, incorporate it into your own project, or use it as is. This cloud is your cloud. </p>
                             </div>
                         </div>
                     </div>
