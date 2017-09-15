@@ -36,6 +36,7 @@
 
 </head>
 
+
 <body id="page-top">
 
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
@@ -59,7 +60,7 @@
                     <a class="page-scroll" href="/cadmodel">Web-based CAD</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="https://github.com/autodrop3d">The Code</a>
+                    <a class="page-scroll" href="#theCode">The Code</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#download">Download</a>
@@ -172,6 +173,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="feature-item">
+
+                                <i class="fa fa-4x fa-arrow-circle-down"></i>
+                                <h3>Automatic ejection system hardware</h3>
+                                <p class="text-muted">We almost forgot to mention one of the most minde blowing parts of this system.
+                                We have functional automatic print removal so that your printer can run continuously with out human interaction.
+                                Your parts just fall in a bin when they are complete</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
                 </div>
             </div>
         </div>
@@ -187,6 +207,60 @@
     </div>
     <div class="overlay"></div>
 </section>
+
+
+<section id="theCode" class="container">
+    <div class="container">
+
+
+            <div class="col-md-8">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="feature-item">
+                                <p class="text-muted">3d Print Queue server source code</p>
+                                <a href="https://github.com/Autodrop3d/autodrop3dServer" class="btn btn-outline btn-xl page-scroll">Get It On GitHub</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-item">
+                                <p class="text-muted">Gcode sender for rasberry pi</p>
+                                <a href="https://github.com/Autodrop3d/autodrop3dClient" class="btn btn-outline btn-xl page-scroll">Get It On GitHub</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="feature-item">
+                                <p></p><p></p>
+                                <p class="text-muted">Design plans for 3D printer</p>
+                                <a href="/buildInstructions" class="btn btn-outline btn-xl page-scroll">Visit instructions</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="device-container">
+                    <div class="device-mockup -apple portrait white">
+                        <div class="device">
+                            <div class="screen">
+                                <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                                <img src="img/demo-screen-2.png" class="img-responsive" alt=""> </div>
+                            <div class="button">
+                                <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
 
 <section id="contact" class="contact bg-primary">
     <div class="container">
