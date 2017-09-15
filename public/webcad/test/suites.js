@@ -11,7 +11,6 @@ export default {
   ],
 
   SketcherTools: [
-    TestCase('offset'),
 
   ],
   
@@ -22,21 +21,12 @@ export default {
   ModellerOperations: [
 
   ],
-
-  BREP: [
-    TestCase('brep-bool'),
-    TestCase('brep-bool-wizard-based'),
-    TestCase('brep-pip')
-  ],
-
+  
 };
 
 function TestCase(name) {
   let tests = require('./cases/' + name).default;
-  tests = Object.keys(tests).filter(key => key.startsWith('test')).map(key => ({
-    name: key,
-    func: tests[key]
-  }));
+  tests = Object.keys(tests).filter(key => key.startsWith('test')).map(key => tests[key]);
   return {
     name, tests
   }

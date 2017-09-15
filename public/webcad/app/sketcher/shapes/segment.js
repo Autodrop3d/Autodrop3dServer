@@ -71,10 +71,6 @@ export class Segment extends SketchObject {
     ctx.stroke();
   //  ctx.restore();
   }
-
-  copy() {
-    return new Segment(this.a.copy(), this.b.copy());
-  }
 }
 
 Segment.prototype._class = 'TCAD.TWO.Segment';

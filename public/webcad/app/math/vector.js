@@ -15,9 +15,9 @@ Vector.prototype.set = function(x, y, z) {
 };
 
 Vector.prototype.set3 = function(data) {
-  this.x = data[0] || 0;
-  this.y = data[1] || 0;
-  this.z = data[2] || 0;
+  this.x = data[0];
+  this.y = data[1];
+  this.z = data[2];
   return this;
 };
 
@@ -48,14 +48,6 @@ Vector.prototype.length = function() {
   return Math.sqrt(this.x*this.x + this.y*this.y + this.z*this.z);
 };
 
-Vector.prototype.lengthSquared = function() {
-  return this.dot(this);
-};
-
-Vector.prototype.distanceToSquared = function(a) {
-  return this.minus(a).lengthSquared();
-};
-
 Vector.prototype.minus = function(vector) {
   return new Vector(this.x - vector.x, this.y - vector.y, this.z - vector.z);
 };
@@ -72,10 +64,6 @@ Vector.prototype._minusXYZ = function(x, y, z) {
   this.y -= y;
   this.z -= z;
   return this;
-};
-
-Vector.prototype.plusXYZ = function(x, y, z) {
-  return new Vector(this.x + x, this.y + y, this.z + z);
 };
 
 Vector.prototype.plus = function(vector) {
@@ -126,14 +114,12 @@ Vector.prototype.equals = function(vector) {
   return vectorsEqual(this, vector);
 };
 
-Vector.prototype.toArray = function() {
-  return [this.x, this.y, this.z];
-};
-
-Vector.prototype.data = Vector.prototype.toArray;
-
 Vector.prototype.three = function() {
   return new THREE.Vector3(this.x, this.y, this.z);
+};
+
+Vector.prototype.csg = function() {
+  return new CSG.Vector3D(this.x, this.y, this.z);
 };
 
 export default Vector;

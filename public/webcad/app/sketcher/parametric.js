@@ -23,8 +23,8 @@ function ParametricManager(viewer) {
   this.listeners = [];
   this.constantTable = {};
   
-  this.viewer.params.define('constantDefinition', null);
-  this.viewer.params.subscribe('constantDefinition', 'parametricManager', this.onConstantsExternalChange, this)();
+  this.viewer.params.define("constantDefinition", null);
+  this.viewer.params.subscribe("constantDefinition", "parametricManager", this.rebuildConstantTable, this)();
   this.constantResolver = this.createConstantResolver();
 }
 
@@ -61,31 +61,15 @@ ParametricManager.prototype.rebuildConstantTable = function(constantDefinition) 
       try {
         var value = eval(prefix + "return " + m[2] + "; \n})()");
         this.constantTable[constant] = value;
-        prefix += "const " + constant + " = " + value + ";\n"
+        prefix += constant + " = " + value + ";\n"
       } catch(e) {
         console.log(e);
       }
     }
   }
-};
-
-ParametricManager.prototype.onConstantsExternalChange = function(constantDefinition) {
-  this.rebuildConstantTable(constantDefinition);
   this.refresh();
 };
 
-ParametricManager.prototype.defineNewConstant = function(name, value) {
-  let constantDefinition = this.viewer.params.constantDefinition;
-  let constantText = name + ' = ' + value;
-  if (constantDefinition) {
-    constantDefinition += '\n' + constantText;
-  } else {
-    constantDefinition = constantText;
-  }
-  this.rebuildConstantTable(constantDefinition);
-  //disabling onConstantsExternalChange since we don't need re-solve  
-  this.viewer.params.set('constantDefinition', constantDefinition, 'parametricManager');
-};
 
 ParametricManager.prototype.findComponents = function(constr) {
   if (this.subSystems.length === 0) {
@@ -418,7 +402,7 @@ ParametricManager.prototype.radius = function(objs, promptCallback) {
   }
 };
 
-ParametricManager.prototype._linkObjects = function(objs) {
+ParametricManager.prototype.linkObjects = function(objs) {
   var i;
   var masterIdx = -1;
   for (i = 0; i < objs.length; ++i) {
@@ -439,10 +423,6 @@ ParametricManager.prototype._linkObjects = function(objs) {
     var c = new Constraints.Coincident(objs[i], objs[masterIdx]);
     this._add(c);
   }
-};
-
-ParametricManager.prototype.linkObjects = function(objs) {
-  this._linkObjects(objs);
   this.notify();
 };
 
@@ -501,23 +481,29 @@ ParametricManager.prototype.__getSolveData = function(constraints, out) {
   return out;
 };
 
-ParametricManager.prototype.solve = function(lock, extraConstraints, disabledObjects) {
-  const solver = this.prepare(lock, extraConstraints, disabledObjects);
+ParametricManager.prototype.solve = function() {
+  var solver = this.prepare([]);
   solver.solve(false);
   solver.sync();
 };
 
-ParametricManager.prototype.prepare = function(locked, extraConstraints, disabledObjects) {
-  return this._prepare(locked, this.subSystems, extraConstraints, disabledObjects);
+ParametricManager.prototype.solveWithLock = function(lock) {
+  var solver = this.prepare(lock);
+  solver.solve(false);
+  solver.sync();
 };
 
-ParametricManager.prototype._prepare = function(locked, subSystems, extraConstraints, disabledObjects) {
+ParametricManager.prototype.prepare = function(locked, extraConstraints) {
+  return this._prepare(locked, this.subSystems, extraConstraints);
+};
+
+ParametricManager.prototype._prepare = function(locked, subSystems, extraConstraints) {
   var solvers = [];
   for (var i = 0; i < subSystems.length; i++) {
-    solvers.push(this.prepareForSubSystem(locked, subSystems[i].constraints, extraConstraints, disabledObjects));
+    solvers.push(this.prepareForSubSystem(locked, subSystems[i].constraints, extraConstraints));
   }
-  if (subSystems.length == 0 && locked && locked.length != 0) {
-    solvers.push(this.prepareForSubSystem(locked, [], extraConstraints, disabledObjects));
+  if (subSystems.length == 0 && locked.length != 0) {
+    solvers.push(this.prepareForSubSystem(locked, [], extraConstraints));
   }
   return {
     solvers : solvers,
@@ -555,9 +541,9 @@ ParametricManager.prototype._prepare = function(locked, subSystems, extraConstra
   }
 };
 
-ParametricManager.isAux = function(obj, disabledObjects) {
+ParametricManager.isAux = function(obj) {
   while (!!obj) {
-    if (!!obj.aux || (disabledObjects !== undefined && disabledObjects.has(obj))) {
+    if (!!obj.aux) {
       return true;
     }
     obj = obj.parent;
@@ -565,13 +551,12 @@ ParametricManager.isAux = function(obj, disabledObjects) {
   return false;
 };
 
-ParametricManager.fetchAuxParams = function(system, auxParams, auxDict, disabledObjects) {
-  disabledObjects = disabledObjects != undefined ? new Set(disabledObjects) : undefined;
+ParametricManager.fetchAuxParams = function(system, auxParams, auxDict) {
   for (var i = 0; i < system.length; ++i) {
     for (var p = 0; p < system[i][1].length; ++p) {
       var parameter = system[i][1][p];
       if (parameter.obj !== undefined) {
-        if (ParametricManager.isAux(parameter.obj, disabledObjects)) {
+        if (ParametricManager.isAux(parameter.obj)) {
           if (auxDict[parameter.id] === undefined) {
             auxDict[parameter.id] = parameter;
             auxParams.push(parameter);
@@ -737,9 +722,7 @@ ParametricManager.reduceSystem = function(system, readOnlyParams) {
   return info;
 };
 
-ParametricManager.prototype.prepareForSubSystem = function(locked, subSystemConstraints, extraConstraints, disabledObjects) {
-
-  locked = locked || [];
+ParametricManager.prototype.prepareForSubSystem = function(locked, subSystemConstraints, extraConstraints) {
 
   var constrs = [];
   var solverParamsDict = {};
@@ -750,7 +733,7 @@ ParametricManager.prototype.prepareForSubSystem = function(locked, subSystemCons
   this.__getSolveData(subSystemConstraints, system);
   if (!!extraConstraints) this.__getSolveData(extraConstraints, system);
 
-  ParametricManager.fetchAuxParams(system, auxParams, auxDict, disabledObjects);
+  ParametricManager.fetchAuxParams(system, auxParams, auxDict);
   var readOnlyParams = auxParams.concat(locked);
   var reduceInfo = ParametricManager.reduceSystem(system, readOnlyParams);
   
@@ -790,16 +773,19 @@ ParametricManager.prototype.prepareForSubSystem = function(locked, subSystemCons
     }
   })();
   
+  var aux = [];
   for (var i = 0; i < system.length; ++i) {
     
     var sdata = system[i];
     var params = [];
 
-    for (let p = 0; p < sdata[1].length; ++p) {
-      const param = sdata[1][p];
-      const solverParam = getSolverParam(param);
-      solverParam.aux = auxDict[param.id] !== undefined;
+    for (var p = 0; p < sdata[1].length; ++p) {
+      var param = sdata[1][p];
+      var solverParam = getSolverParam(param);
       params.push(solverParam);
+      if (auxDict[param.id] !== undefined) {
+        aux.push(solverParam);
+      }
     }
     if (reduceInfo.reducedConstraints[i] === true) continue;
 
@@ -808,11 +794,11 @@ ParametricManager.prototype.prepareForSubSystem = function(locked, subSystemCons
   }
 
   var lockedSolverParams = [];
-  for (let p = 0; p < locked.length; ++p) {
+  for (p = 0; p < locked.length; ++p) {
     lockedSolverParams[p] = getSolverParam(locked[p]);
   }
   
-  var solver = prepare(constrs, lockedSolverParams);
+  var solver = prepare(constrs, lockedSolverParams, aux);
   function solve(rough, alg) {
     return solver.solveSystem(rough, alg);
   }
@@ -899,38 +885,6 @@ Constraints.Factory[Constraints.Coincident.prototype.NAME] = function(refs, data
 Constraints.Coincident.prototype.getObjects = function() {
   return [this.a, this.b];
 };
-
-// ------------------------------------------------------------------------------------------------------------------ //
-
-/** @constructor */
-Constraints.RadiusOffset = function(arc1, arc2, offset) {
-  this.arc1 = arc1;
-  this.arc2 = arc2;
-  this.offset = offset;
-};
-
-Constraints.RadiusOffset.prototype.NAME = 'RadiusOffset';
-Constraints.RadiusOffset.prototype.UI_NAME = 'Radius Offset';
-
-Constraints.RadiusOffset.prototype.getSolveData = function(resolver) {
-  return [
-    ['Diff', [this.arc1.r, this.arc2.r], [resolver(this.offset)]]
-  ];
-};
-
-Constraints.RadiusOffset.prototype.serialize = function() {
-  return [this.NAME, [this.arc1.id, this.arc2.id, this.offset]];
-};
-
-Constraints.Factory[Constraints.RadiusOffset.prototype.NAME] = function(refs, data) {
-  return new Constraints.RadiusOffset(refs(data[0]), refs(data[1]), data[2]);
-};
-
-Constraints.RadiusOffset.prototype.getObjects = function() {
-  return [this.arc1, this.arc2];
-};
-
-Constraints.RadiusOffset.prototype.SettableFields = {'offset' : "Enter the offset"};
 
 // ------------------------------------------------------------------------------------------------------------------ //
 
@@ -1022,45 +976,6 @@ Constraints.Factory[Constraints.Perpendicular.prototype.NAME] = function(refs, d
 Constraints.Perpendicular.prototype.getObjects = function() {
   return [this.l1, this.l2];
 };
-
-// ------------------------------------------------------------------------------------------------------------------ //
-
-/** @constructor */
-Constraints.P2LDistanceSigned = function(p, a, b, d) {
-  this.p = p;
-  this.a = a;
-  this.b = b;
-  this.d = d;
-};
-
-Constraints.P2LDistanceSigned.prototype.NAME = 'P2LDistanceSigned';
-Constraints.P2LDistanceSigned.prototype.UI_NAME = 'Distance P & L';
-
-Constraints.P2LDistanceSigned.prototype.getSolveData = function(resolver) {
-  var params = [];
-  this.p.collectParams(params);
-  this.a.collectParams(params);
-  this.b.collectParams(params);
-  return [[this.NAME, params, [resolver(this.d)]]];
-};
-
-Constraints.P2LDistanceSigned.prototype.serialize = function() {
-  return [this.NAME, [this.p.id, this.a.id, this.b.id, this.d]];
-};
-
-Constraints.Factory[Constraints.P2LDistanceSigned.prototype.NAME] = function(refs, data) {
-  return new Constraints.P2LDistanceSigned(refs(data[0]), refs(data[1]), refs(data[2]), data[3]);
-};
-
-Constraints.P2LDistanceSigned.prototype.getObjects = function() {
-  const collector = new Constraints.ParentsCollector();
-  collector.check(this.a);
-  collector.check(this.b);
-  collector.parents.push(this.p);
-  return collector.parents;
-};
-
-Constraints.P2LDistanceSigned.prototype.SettableFields = {'d' : "Enter the distance"};
 
 // ------------------------------------------------------------------------------------------------------------------ //
 

@@ -1,1 +1,2 @@
-export default (window.devicePixelRatio) ? window.devicePixelRatio : 1;
+const DPR = (window.devicePixelRatio) ? window.devicePixelRatio : 1;
+export default DPR;

@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1d19dcd8030284202861"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f9238531f60fbeff42ae"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28476,34 +28476,32 @@
 	      e.stopPropagation();
 	    }
 	    if (e.keyCode == 9) {
-	      (function () {
-	        var text = input.val();
-	        var variants = variantsSupplier().filter(function (v) {
-	          return v.startsWith(text);
-	        });
-	        variants.sort();
-	        if (variants.length == 0) {} else {
-	          var shared = sharedStartOfSortedArray(variants);
-	          if (shared.length != text.length) {
-	            input.val(shared);
-	          } else {
-	            var autocompleteArea = _this.out.find('.autocomplete-area');
-	            if (autocompleteArea.length == 0) {
-	              autocompleteArea = $('<div>', { 'class': 'terminal-commandText autocomplete-area' });
-	              _this.out.append(autocompleteArea);
-	            }
-	            var more = '';
-	            var limit = 20;
-	            if (variants.length > limit) {
-	              more = '... and ' + (variants.length - limit) + ' more';
-	              variants = variants.slice(0, limit);
-	            }
-	            autocompleteArea.text(variants.join(' ') + more);
-	            _this.scrollToTheEnd();
+	      var text = input.val();
+	      var variants = variantsSupplier().filter(function (v) {
+	        return v.startsWith(text);
+	      });
+	      variants.sort();
+	      if (variants.length == 0) {} else {
+	        var shared = sharedStartOfSortedArray(variants);
+	        if (shared.length != text.length) {
+	          input.val(shared);
+	        } else {
+	          var autocompleteArea = _this.out.find('.autocomplete-area');
+	          if (autocompleteArea.length == 0) {
+	            autocompleteArea = $('<div>', { 'class': 'terminal-commandText autocomplete-area' });
+	            _this.out.append(autocompleteArea);
 	          }
+	          var more = '';
+	          var limit = 20;
+	          if (variants.length > limit) {
+	            more = '... and ' + (variants.length - limit) + ' more';
+	            variants = variants.slice(0, limit);
+	          }
+	          autocompleteArea.text(variants.join(' ') + more);
+	          _this.scrollToTheEnd();
 	        }
-	        consumeEvent();
-	      })();
+	      }
+	      consumeEvent();
 	    } else if (e.keyCode == 38) {
 	      _this.historyPointer = Math.max(_this.historyPointer - 1, 0);
 	      setHistory();

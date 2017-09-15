@@ -3,13 +3,12 @@ import * as math from './math'
 
 export function LUT(a, b, cp1, cp2, scale) {
   scale = 1 / scale;
-  const lut = [];
+  const lut = [a];
   for (let t = 0; t < 1; t += 0.1 * scale) {
     const p = compute(t, a, b, cp1, cp2);
     lut.push(p);
   }
-  lut[0] = a;
-  lut[lut.length - 1] = b;
+  lut.push(b);
   return lut;
 }
 

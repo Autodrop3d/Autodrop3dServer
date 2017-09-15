@@ -8,22 +8,13 @@ import {ActionManager} from './actions/actions'
 import * as AllActions from './actions/all-actions'
 import Vector from '../math/vector'
 import {Matrix3, AXIS, ORIGIN, IDENTITY_BASIS} from '../math/l3space'
-import {Craft} from './craft/craft'
-import {ReadSketch}  from './craft/sketch/sketch-reader'
-import * as workbench  from './craft/mesh/workbench'
+import * as workbench  from './workbench'
 import * as cad_utils from './cad-utils'
 import * as math from '../math/math'
 import {IO} from '../sketcher/io'
 import {AddDebugSupport} from './debug'
 import {init as initSample} from './sample'
 import '../../css/app3d.less'
-
-import * as BREPBuilder from '../brep/brep-builder'
-import * as BREPPrimitives from '../brep/brep-primitives'
-import * as BREPBool from '../brep/operations/boolean'
-import {BREPValidator} from '../brep/brep-validator'
-import {BREPSceneSolid} from './scene/brep-scene-object'
-import TPI from './tpi'
 
 function App() {
   this.id = this.processHints();
@@ -35,19 +26,18 @@ function App() {
   this.actionManager.registerActions(AllActions);
   this.tabSwitcher = new TabSwitcher($('#tab-switcher'), $('#view-3d'));
   this.controlBar = new ControlBar(this, $('#control-bar'));
-  this.TPI = TPI;
-  
-  this.craft = new Craft(this);
+
   this.ui = new UI(this);
+  this.craft = new workbench.Craft(this);
 
   AddDebugSupport(this);
   
-  if (this.id.startsWith('$scratch$')) {
-    setTimeout(() => this.scratchCode(), 0);
+  if (this.id == '$scratch$') {
+    this.addBox();
   } else {
     this.load();
   }
-  
+
   this._refreshSketches();
   this.viewer.render();
 
@@ -75,35 +65,6 @@ function App() {
   });
 }
 
-App.prototype.addShellOnScene = function(shell, skin) {
-  const sceneSolid = new BREPSceneSolid(shell, undefined, skin);
-  this.viewer.workGroup.add(sceneSolid.cadGroup);
-  this.viewer.render();
-  return sceneSolid;
-};
-
-App.prototype.scratchCode = function() {
-  const a = BREPBuilder.createPrism(ap.map(p => new this.TPI.brep.geom.Point().set3(p)), 500);
-  const b = BREPBuilder.createPrism(bp.map(p => new this.TPI.brep.geom.Point().set3(p)), 500);
-
-  this.addShellOnScene(a, {
-    color: 0x800080,
-    transparent: true,
-    opacity: 0.5,
-  });
-  this.addShellOnScene(b, {
-    color: 0xfff44f,
-    transparent: true,
-    opacity: 0.5,
-  });
-  //this.addShellOnScene(a);
-  //this.addShellOnScene(b);
-  const result = BREPBool.subtract(a, b);
-  this.addShellOnScene(result);
-
-  this.viewer.render();
-};
-
 App.prototype.processHints = function() {
   let id = window.location.hash.substring(1);
   if (!id) {
@@ -128,18 +89,18 @@ App.prototype.createState = function() {
   return state;
 };
 
-App.prototype.findAllSolidsOnScene = function() {
+App.prototype.findAllSolids = function() {
   return this.viewer.workGroup.children
     .filter(function(obj) {return obj.__tcad_solid !== undefined} )
     .map(function(obj) {return obj.__tcad_solid} )
 };
 
 App.prototype.findFace = function(faceId) {
-  var solids = this.craft.solids;
+  var solids = this.findAllSolids();
   for (var i = 0; i < solids.length; i++) {
     var solid = solids[i];
-    for (var j = 0; j < solid.sceneFaces.length; j++) {
-      var face = solid.sceneFaces[j];
+    for (var j = 0; j < solid.polyFaces.length; j++) {
+      var face = solid.polyFaces[j];
       if (face.id == faceId) {
         return face;
       }
@@ -149,7 +110,7 @@ App.prototype.findFace = function(faceId) {
 };
 
 App.prototype.findSolidByCadId = function(cadId) {
-  var solids = this.craft.solids;
+  var solids = this.findAllSolids();
   for (var i = 0; i < solids.length; i++) {
     var solid = solids[i];
     if (solid.tCadId == cadId) {
@@ -160,7 +121,7 @@ App.prototype.findSolidByCadId = function(cadId) {
 };
 
 App.prototype.findSolidById = function(solidId) {
-  var solids = this.craft.solids;
+  var solids = this.findAllSolids();
   for (var i = 0; i < solids.length; i++) {
     var solid = solids[i];
     if (solid.id == solidId) {
@@ -172,12 +133,12 @@ App.prototype.findSolidById = function(solidId) {
 
 App.prototype.indexEntities = function() {
   var out = {solids : {}, faces : {}};
-  var solids = this.craft.solids;
+  var solids = this.findAllSolids();
   for (var i = 0; i < solids.length; i++) {
     var solid = solids[i];
     out.solids[solid.tCadId] = solid;
-    for (var j = 0; j < solid.sceneFaces.length; j++) {
-      var face = solid.sceneFaces[j];
+    for (var j = 0; j < solid.polyFaces.length; j++) {
+      var face = solid.polyFaces[j];
       out.faces[face.id] = face;
     }
   }
@@ -195,7 +156,7 @@ App.prototype.projectStorageKey = function(polyFaceId) {
 };
 
 
-App.prototype.editFace = function() {
+App.prototype.sketchSelectedFace = function() {
   if (this.viewer.selectionMgr.selection.length == 0) {
     return;
   }
@@ -203,8 +164,8 @@ App.prototype.editFace = function() {
   this.sketchFace(polyFace);
 };
 
-App.prototype.sketchFace = function(sceneFace) {
-  var faceStorageKey = this.faceStorageKey(sceneFace.id);
+App.prototype.sketchFace = function(polyFace) {
+  var faceStorageKey = this.faceStorageKey(polyFace.id);
 
   var savedFace = localStorage.getItem(faceStorageKey);
   var data;
@@ -221,10 +182,10 @@ App.prototype.sketchFace = function(sceneFace) {
     return a.sketchConnectionObject.id === b.sketchConnectionObject.id;
   }
 
-  var paths = sceneFace.getBounds();
+  var paths = workbench.reconstructSketchBounds(polyFace.solid.csg, polyFace);
 
-  //sceneFace.polygon.collectPaths(paths);
-  var _3dTransformation = new Matrix3().setBasis(sceneFace.basis());
+  //polyFace.polygon.collectPaths(paths);
+  var _3dTransformation = new Matrix3().setBasis(polyFace.basis());
   var _2dTr = _3dTransformation.invert();
 
   function addSegment(a, b) {
@@ -319,7 +280,7 @@ App.prototype.sketchFace = function(sceneFace) {
   }
 
   for (var i = 0; i < paths.length; i++) {
-    var path = paths[i];
+    var path = paths[i].vertices;
     if (path.length < 3) continue;
     var shift = 0;
     if (isCircle(path)) {
@@ -365,7 +326,7 @@ App.prototype.sketchFace = function(sceneFace) {
 
   localStorage.setItem(faceStorageKey, JSON.stringify(data));
   var sketchURL = faceStorageKey.substring(App.STORAGE_PREFIX.length);
-  this.tabSwitcher.showSketch(sketchURL, sceneFace.id);
+  this.tabSwitcher.showSketch(sketchURL, polyFace.id);
 };
 
 App.prototype.extrude = function() {
@@ -380,7 +341,7 @@ App.prototype.extrude = function() {
   var app = this;
   var solids = [polyFace.solid];
   this.craft.modify({
-    type: 'EXTRUDE',
+    type: 'PAD',
     solids : solids,
     face : polyFace,
     height : height
@@ -406,6 +367,15 @@ App.prototype.cut = function() {
   });
 };
 
+App.prototype.addBox = function() {
+  this.craft.modify({
+    type: 'BOX',
+    solids : [],
+    params : {w: 500, h: 500, d: 500},
+    protoParams : [500, 500, 500]
+  });
+};
+
 App.prototype.refreshSketches = function() {
   this._refreshSketches();
   this.bus.notify('refreshSketch');
@@ -413,25 +383,25 @@ App.prototype.refreshSketches = function() {
 };
 
 App.prototype._refreshSketches = function() {
-  var allSolids = this.craft.solids;
+  var allSolids = this.findAllSolids();
   for (var oi = 0; oi < allSolids.length; ++oi) {
     var obj = allSolids[oi];
-    for (var i = 0; i < obj.sceneFaces.length; i++) {
-      var sketchFace = obj.sceneFaces[i];
+    for (var i = 0; i < obj.polyFaces.length; i++) {
+      var sketchFace = obj.polyFaces[i];
       this.refreshSketchOnFace(sketchFace);
     }
   }
 };
 
 App.prototype.findSketches = function(solid) {
-  return solid.sceneFaces.filter(f => this.faceStorageKey(f.id) in localStorage).map(f => f.id);
+  return solid.polyFaces.filter(f => this.faceStorageKey(f.id) in localStorage).map(f => f.id);
 };
 
 App.prototype.refreshSketchOnFace = function(sketchFace) {
   var faceStorageKey = this.faceStorageKey(sketchFace.id);
   var savedFace = localStorage.getItem(faceStorageKey);
   if (savedFace != null) {
-    var geom = ReadSketch(JSON.parse(savedFace), sketchFace.id, true);
+    var geom = workbench.readSketchGeom(JSON.parse(savedFace), sketchFace.id, true);
     sketchFace.syncSketches(geom);
   }
 };
@@ -440,6 +410,13 @@ App.prototype.save = function() {
   var data = {};
   data.history = this.craft.history;
   localStorage.setItem(this.projectStorageKey(), JSON.stringify(data));
+
+    var allPolygons = cad_utils.arrFlatten1L(this.findAllSolids().map(function (s) {
+        return s.csg.toPolygons()
+    }));
+    var stl = CSG.fromPolygons(allPolygons).toStlString();
+
+    localStorage.setItem(this.projectStorageKey() + ".stl", stl.data[0]);
 };
 
 App.prototype.load = function() {
@@ -453,7 +430,7 @@ App.prototype.load = function() {
 };
 
 App.prototype.stlExport = function() {
-  var allPolygons = cad_utils.arrFlatten1L(this.craft.solids.map(function (s) {
+  var allPolygons = cad_utils.arrFlatten1L(this.findAllSolids().map(function (s) {
     return s.csg.toPolygons()
   }));
   var stl = CSG.fromPolygons(allPolygons).toStlString();

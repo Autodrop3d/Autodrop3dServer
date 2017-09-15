@@ -15,7 +15,6 @@ $(() => {
   });
   $('#test-list').html(TestList({suites}));
   new Menu(ACTIONS);
-  checkStartupRequest();
 });
 
 const queue = [];
@@ -37,7 +36,7 @@ function scheduleTestCase(testCase, caseId) {
 function scheduleTest(test, id) {
   queue.push({
       id,
-      func: test.func
+      func: test
     });
 }
 
@@ -89,11 +88,6 @@ function pause() {
 
 function updateIcon(dom, success) {
   dom.find('.status').addClass(success ? 'status-success' : 'status-fail');
-  const passed = $('#test-list .status.status-success').length;
-  const failed = $('#test-list .status.status-fail').length;
-  $('.report-amount-run').text(passed + failed);
-  $('.report-amount-passed').text(passed);
-  $('.report-amount-failed').text(failed);
 }
 
 function findTestCaseById(id) {
@@ -114,22 +108,6 @@ function enableBtn(btn) {
   btn.removeAttr('disabled');
 }
 
-function checkStartupRequest() {
-  const testId = window.location.hash.substring(1);
-  if (testId) {
-    runTestImpl(testId);
-    const testDomId = 'test-' + testId.split(':').join('-');
-    $('#' +testDomId).get(0).scrollIntoView();
-  }
-}
-
-function runTestImpl(testIdStr) {
-  const testId = testIdStr.split(':');
-  queue.length = 0;
-  window.location.hash = "#" + testIdStr;
-  scheduleTest(findTestById(testId), testIdStr);
-  pokeQueue();
-}
 
 const ACTIONS = {
   Run: {
@@ -149,7 +127,7 @@ const ACTIONS = {
   RunTestCase: {
     label: "Run Test Case",
     invoke: (target) => {
-      const testCaseIdStr = target.data('testCaseId');
+      var testCaseIdStr = target.data('testCaseId');
       const testCaseId = testCaseIdStr.split(':');
       queue.length = 0;
       scheduleTestCase(findTestCaseById(testCaseId), testCaseIdStr);
@@ -160,8 +138,11 @@ const ACTIONS = {
   RunTest: {
     label: "Run Test",
     invoke: (target) => {
-      const testIdStr = target.data('testId');
-      runTestImpl(testIdStr);
+      var testIdStr = target.data('testId');
+      const testId = testIdStr.split(':');
+      queue.length = 0;
+      scheduleTest(findTestById(testId), testIdStr);
+      pokeQueue();
     }
   }
 };

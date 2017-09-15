@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1d19dcd8030284202861"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f9238531f60fbeff42ae"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -10196,13 +10196,13 @@
 	  var data = {};
 	  data.history = this.craft.history;
 	  localStorage.setItem(this.projectStorageKey(), JSON.stringify(data));
-
-        var allPolygons = cad_utils.arrFlatten1L(this.findAllSolids().map(function (s) {
-            return s.csg.toPolygons();
-        }));
-        var stl = CSG.fromPolygons(allPolygons).toStlString();
-
-        localStorage.setItem(this.projectStorageKey()+".stl", stl.data[0]);
+	
+	  var allPolygons = cad_utils.arrFlatten1L(this.findAllSolids().map(function (s) {
+	    return s.csg.toPolygons();
+	  }));
+	  var stl = CSG.fromPolygons(allPolygons).toStlString();
+	
+	  localStorage.setItem(this.projectStorageKey() + ".stl", stl.data[0]);
 	};
 	
 	App.prototype.load = function () {
@@ -13872,10 +13872,10 @@
 	
 	    _loop(i);
 	  }
-	  for (var _i = 0; _i < newSolids.length; _i++) {
-	    var _solid = newSolids[_i];
-	    if (toUpdate[_i] !== undefined) {
-	      this.solids[toUpdate[_i]] = _solid;
+	  for (var i = 0; i < newSolids.length; i++) {
+	    var _solid = newSolids[i];
+	    if (toUpdate[i] !== undefined) {
+	      this.solids[toUpdate[i]] = _solid;
 	    } else {
 	      this.solids.push(_solid);
 	    }
@@ -14187,19 +14187,15 @@
 	function LoadSTLFromURL(url, solidsConsumer) {
 	  var xhr = new XMLHttpRequest();
 	  xhr.onreadystatechange = function () {
-	    var _this = this;
-	
 	    if (this.readyState == 4) {
 	      //console.log(this.response, typeof this.response);
 	      if (this.status == 200) {
-	        (function () {
-	          var reader = new FileReader();
-	          reader.addEventListener("loadend", function () {
-	            var solids = (0, _stlReader.ParseStl)(reader.result);
-	            solidsConsumer(solids);
-	          });
-	          reader.readAsArrayBuffer(_this.response);
-	        })();
+	        var reader = new FileReader();
+	        reader.addEventListener("loadend", function () {
+	          var solids = (0, _stlReader.ParseStl)(reader.result);
+	          solidsConsumer(solids);
+	        });
+	        reader.readAsArrayBuffer(this.response);
 	      } else {
 	        solidsConsumer(null, this.status);
 	      }
@@ -15526,7 +15522,7 @@
 	var Handlebars = __webpack_require__(35);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<div class=\"action-info\">\n  <div class=\"action-info-hint\" data-bind=\"hint\"></div>\n  <div class=\"action-info-info\" data-bind=\"info\"></div>\n  <div class=\"action-info-hotkey\" data-bind=\"hotKey\">hotkey: %s</div>\n</div>";
+	    return "<div class=\"action-info\">\r\n  <div class=\"action-info-hint\" data-bind=\"hint\"></div>\r\n  <div class=\"action-info-info\" data-bind=\"info\"></div>\r\n  <div class=\"action-info-hotkey\" data-bind=\"hotKey\">hotkey: %s</div>\r\n</div>";
 	},"useData":true});
 
 /***/ },
@@ -16727,7 +16723,7 @@
 	var Handlebars = __webpack_require__(35);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<div class=\"tc-folder\">\n  <div class=\"tc-row tc-title\">Modifications</div>\n  <div class=\"tc-list\" data-bind-list=\"modifications\">\n    <div class=\"tc-row tc-pseudo-btn modification-item context-hover action-item\" data-action=\"SetHistoryPointer\" data-bind=\"@data-modification: id\">\n      <span data-bind=\"info\" style=\"float: left\"></span>\n      <span style=\"float: right\" class=\"modification-right-buttons\">\n        <i class=\"fa fa-edit modification-button action-item\" data-action=\"OpenHistoryWizard\"></i>\n        <i class=\"fa fa-image modification-button action-item require-face\" data-action=\"EditOperationSketch\"></i>\n        <i class=\"fa fa-remove modification-button action-item danger\" data-action=\"RemoveModification\"></i>\n      </span>\n    </div>\n  </div>\n  <div class=\"tc-row tc-ctrl tc-buttons-block\">\n    <span class=\"tc-block-btn active-btn\">Finish History Editing</span>\n  </div>\n</div>\n";
+	    return "<div class=\"tc-folder\">\r\n  <div class=\"tc-row tc-title\">Modifications</div>\r\n  <div class=\"tc-list\" data-bind-list=\"modifications\">\r\n    <div class=\"tc-row tc-pseudo-btn modification-item context-hover action-item\" data-action=\"SetHistoryPointer\" data-bind=\"@data-modification: id\">\r\n      <span data-bind=\"info\" style=\"float: left\"></span>\r\n      <span style=\"float: right\" class=\"modification-right-buttons\">\r\n        <i class=\"fa fa-edit modification-button action-item\" data-action=\"OpenHistoryWizard\"></i>\r\n        <i class=\"fa fa-image modification-button action-item require-face\" data-action=\"EditOperationSketch\"></i>\r\n        <i class=\"fa fa-remove modification-button action-item danger\" data-action=\"RemoveModification\"></i>\r\n      </span>\r\n    </div>\r\n  </div>\r\n  <div class=\"tc-row tc-ctrl tc-buttons-block\">\r\n    <span class=\"tc-block-btn active-btn\">Finish History Editing</span>\r\n  </div>\r\n</div>\r\n";
 	},"useData":true});
 
 /***/ },
@@ -16737,7 +16733,7 @@
 	var Handlebars = __webpack_require__(35);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<div class=\"tc-list solid-list\">\n  <div>\n    <div class=\"tc-row tc-pseudo-btn solid-item action-item context-click\" \n         data-action=\"menu.SolidContext\"\n         data-bind=\"id, @data-id: id\">Solid %s</div>\n    <div class=\"sketch-list\" data-bind-list=\"sketches\">\n      <div class=\"tc-row tc-pseudo-btn sketch-item\" data-bind=\"id, @data-id: id\" >Sketch %s</div>\n    </div>\n  </div>\n</div>\n\n";
+	    return "<div class=\"tc-list solid-list\">\r\n  <div>\r\n    <div class=\"tc-row tc-pseudo-btn solid-item action-item context-click\" \r\n         data-action=\"menu.SolidContext\"\r\n         data-bind=\"id, @data-id: id\">Solid %s</div>\r\n    <div class=\"sketch-list\" data-bind-list=\"sketches\">\r\n      <div class=\"tc-row tc-pseudo-btn sketch-item\" data-bind=\"id, @data-id: id\" >Sketch %s</div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n";
 	},"useData":true});
 
 /***/ },
@@ -18116,7 +18112,7 @@
 	});
 	exports.BINDERS = exports.FORMATTERS = exports.BINDING_CALLBACK = undefined;
 	
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
 	exports.Bind = Bind;
 	exports.BindArray = BindArray;

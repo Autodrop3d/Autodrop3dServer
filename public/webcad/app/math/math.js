@@ -70,10 +70,6 @@ export function strictEqual(a, b) {
   return a.x == b.x && a.y == b.y && a.z == b.z;
 }
 
-export function strictEqual2D(a, b) {
-  return a.x == b.x && a.y == b.y;
-}
-
 export function _vec(size) {
   var out = [];
   out.length = size;
@@ -102,12 +98,12 @@ export function rotateInPlace(px, py, angle, out) {
   return out;
 }
 
-export function polygonOffsetXY(polygon, scaleX, scaleY) {
+export function polygonOffset( polygon, scale ) {
   const origBBox = new BBox();
   const scaledBBox = new BBox();
   const result = [];
   for (let point of polygon) {
-    const scaledPoint = new Vector(point.x * scaleX, point.y * scaleY);
+    const scaledPoint = new Vector(point.x, point.y)._multiply(scale);
     result.push(scaledPoint);
     origBBox.checkPoint(point);
     scaledBBox.checkPoint(scaledPoint);
@@ -117,21 +113,6 @@ export function polygonOffsetXY(polygon, scaleX, scaleY) {
     point._minus(alignVector);
   }
   return result;
-}
-
-
-export function polygonOffset( polygon, scale ) {
-  return polygonOffsetXY( polygon, scale, scale );
-}
-
-export function polygonOffsetByDelta( polygon, delta ) {
-  const origBBox = new BBox();
-  for (let point of polygon) {
-    origBBox.checkPoint(point);
-  }
-  const width = origBBox.width();
-  const height = origBBox.height();
-  return polygonOffsetXY(polygon, (width + delta) / width, (height + delta) / height);
 }
 
 export function isPointInsidePolygon( inPt, inPolygon ) {
@@ -178,43 +159,5 @@ export function isPointInsidePolygon( inPt, inPolygon ) {
 
   return	inside;
 }
-
-// http://en.wikipedia.org/wiki/Shoelace_formula
-export function area(contour) {
-  var n = contour.length;
-  var a = 0.0;
-  for ( var p = n - 1, q = 0; q < n; p = q ++ ) {
-    a += contour[ p ].x * contour[ q ].y - contour[ q ].x * contour[ p ].y;
-  }
-  return a * 0.5;
-}
-
-export function isCCW(path2D) {
-  return area(path2D) >= 0;
-}
-
-export function findLowestLeftPoint(poly) {
-  let heroIdx = 0;
-  for (let i = 1; i< poly.length; ++i) {
-    const point = poly[i];
-    let hero = poly[heroIdx];
-    if (point.y < hero.y) {
-      heroIdx = i;
-    } else if (hero.y == point.y) {
-      if (point.x < hero.x) {
-        heroIdx = i;
-      }
-    }
-  }
-  return heroIdx;
-}
-
-export function makeAngle0_360(angle) {
-  angle %= 2 * Math.PI;
-  if (angle < 0) {
-    angle = 2 * Math.PI + angle;
-  }
-  return angle;
-} 
 
 export const sq = (a) => a * a;

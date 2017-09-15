@@ -59,7 +59,6 @@ export class ToolManager {
   }
 
   takeControl(tool) {
-    this.tool.cleanup();
     this.switchTool(tool);
     this.tool.restart();
   }
@@ -70,6 +69,7 @@ export class ToolManager {
   }
 
   releaseControl() {
+    this.tool.cleanup();
     this.takeControl(this.defaultTool);
   }
 }
