@@ -15,7 +15,7 @@
                     <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger'
                        data-link="/auto3dprintqueue/{!!$auto3dprintqueue->id!!}/printagainmsg">Print Again</a>
                 @endif
-                <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning btn-xs'
+                <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning'
                    data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=false'><i
                             class='material-icons'>Unapprove</i></a>
                 @if($auto3dprintqueue->Status != "print" && $auto3dprintqueue->Status != "done" & strrpos($auto3dprintqueue->Status, "Printing")) === false )
