@@ -194,7 +194,7 @@ class Auto3dprintqueueController extends Controller
 
             return redirect('auto3dprintqueue/' . $auto3dprintqueue->id . "/");
         }
-        else
+        else if ($request->printnow == "false")
         {
             $auto3dprintqueue->Status = "canceled";
 
