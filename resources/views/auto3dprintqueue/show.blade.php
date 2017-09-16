@@ -11,15 +11,16 @@
                 <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger'
                    data-link="/auto3dprintqueue/{!!$auto3dprintqueue->id!!}/deleteMsg">delete</a>
 
-                <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger'
-                   data-link="/auto3dprintqueue/{!!$auto3dprintqueue->id!!}/printagainmsg">Print Again</a>
-
-
-                @if($auto3dprintqueue->Status != "print" && $auto3dprintqueue->Status != "done")
-
+                @if( !(strrpos($auto3dprintqueue->Status, "print") === false | strrpos($auto3dprintqueue->Status, "Printing")) === false )
+                    <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger'
+                       data-link="/auto3dprintqueue/{!!$auto3dprintqueue->id!!}/printagainmsg">Print Again</a>
+                @endif
+                <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning btn-xs'
+                   data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=false'><i
+                            class='material-icons'>Unapprove</i></a>
+                @if($auto3dprintqueue->Status != "print" && $auto3dprintqueue->Status != "done" & strrpos($auto3dprintqueue->Status, "Printing")) === false )
                     <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-info'
                        data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=true'>Approve</a>
-
                 @endif
             </form>
             <section class="content">
@@ -190,9 +191,9 @@
         @else
             <div class="row" style="padding: 50px">
                 <div class="col-md-6">
-            <a class='btn btn-primary'
-               href='../../../../auto3dprintqueue/{{$auto3dprintqueue->id}}/viewer'>Show Print Preview</a>
-            </div>
+                    <a class='btn btn-primary'
+                       href='../../../../auto3dprintqueue/{{$auto3dprintqueue->id}}/viewer'>Show Print Preview</a>
+                </div>
             </div>
         @endif
 

@@ -194,6 +194,19 @@ class Auto3dprintqueueController extends Controller
 
             return redirect('auto3dprintqueue/' . $auto3dprintqueue->id . "/");
         }
+        else
+        {
+            $auto3dprintqueue->Status = "canceled";
+
+            $auto3dprintqueue->save();
+
+            if ($request->ajax()) {
+                return URL::to('auto3dprintqueue');
+            }
+
+
+            return redirect('auto3dprintqueue/' . $auto3dprintqueue->id . "/");
+        }
 
 
         return view('auto3dprintqueue.show', compact('title', 'auto3dprintqueue', 'auto3dprintmaterials', 'agent'));
