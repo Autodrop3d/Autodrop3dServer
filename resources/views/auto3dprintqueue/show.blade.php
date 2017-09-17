@@ -13,10 +13,10 @@
 
                 @if( $auto3dprintqueue->Status == "Done" | $auto3dprintqueue->Status == "canceled")
                     <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger'
-                       data-link="/auto3dprintqueue/{!!$auto3dprintqueue->id!!}/printagainmsg">Print Again</a>
+                       data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=true'>Print Again</a>
                 @endif
 
-                @if(!$auto3dprintqueue->Status == "Done" )
+                @if($auto3dprintqueue->Status != "Done" )
                 <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning'
                    data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=false'><i
                             class='material-icons'>Unapprove</i></a>

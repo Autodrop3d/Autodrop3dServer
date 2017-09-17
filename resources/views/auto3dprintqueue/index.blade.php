@@ -59,20 +59,26 @@
 
                             <td>{!!$auto3dprintqueue->user->name!!}</td>
                             <td><div class="btn-group-vertical">
-                                <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger btn-xs'
-                                   data-link="/auto3dprintqueue/{!!$auto3dprintqueue->id!!}/deleteMsg"><i
-                                            class='material-icons'>delete</i></a>
 
 
+                                    <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger  btn-xs'
+                                       data-link="/auto3dprintqueue/{!!$auto3dprintqueue->id!!}/deleteMsg">delete</a>
 
-                                    @if( !(strrpos($auto3dprintqueue->Status, "print") === false | strrpos($auto3dprintqueue->Status, "Printing")) === false )
-                                <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning btn-xs'
-                                   data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=true'><i
-                                            class='material-icons'>Approve</i></a>
+                                    @if( $auto3dprintqueue->Status == "Done" | $auto3dprintqueue->Status == "canceled")
+                                        <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger  btn-xs'
+                                           data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=true'>Print Again</a>
                                     @endif
-                                <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning btn-xs'
-                                   data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=false'><i
-                                            class='material-icons'>Unapprove</i></a>
+
+                                    @if($auto3dprintqueue->Status != "Done" )
+                                        <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning  btn-xs'
+                                           data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=false'><i
+                                                    class='material-icons'>Unapprove</i></a>
+                                    @endif
+                                    @if($auto3dprintqueue->Status == "")
+                                        <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-info  btn-xs'
+                                           data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=true'>Approve</a>
+                                    @endif
+
                                 </div>
                             </td>
                         </tr>
