@@ -6,26 +6,22 @@
         <div class="col-md-6">
             <br>
             <br>
-            <form method='get' action='{!!url("auto3dprintqueue")!!}'>
+
                 <button class='btn btn-primary'>auto3dprintqueue Index</button>
                 <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger'
                    data-link="/auto3dprintqueue/{!!$auto3dprintqueue->id!!}/deleteMsg">delete</a>
 
-                @if( $auto3dprintqueue->Status == "Done" | $auto3dprintqueue->Status == "canceled")
-                    <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger'
-                       data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=true'>Print Again</a>
-                @endif
 
-                @if($auto3dprintqueue->Status != "Done" )
+                @if($auto3dprintqueue->Status != "Done" & $auto3dprintqueue->Status != "canceled" &$auto3dprintqueue->Status != "" )
                 <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning'
                    data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=false'><i
                             class='material-icons'>Unapprove</i></a>
                 @endif
-                @if($auto3dprintqueue->Status == "")
+                @if($auto3dprintqueue->Status == "Done" | $auto3dprintqueue->Status == "canceled" | $auto3dprintqueue->Status == "")
                     <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-info'
                        data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=true'>Approve</a>
                 @endif
-            </form>
+
             <section class="content">
                 <h1>
                     {!!$auto3dprintqueue->Name!!}

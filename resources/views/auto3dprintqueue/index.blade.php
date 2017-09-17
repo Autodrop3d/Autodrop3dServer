@@ -64,17 +64,13 @@
                                     <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger  btn-xs'
                                        data-link="/auto3dprintqueue/{!!$auto3dprintqueue->id!!}/deleteMsg">delete</a>
 
-                                    @if( $auto3dprintqueue->Status == "Done" | $auto3dprintqueue->Status == "canceled")
-                                        <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger  btn-xs'
-                                           data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=true'>Print Again</a>
-                                    @endif
 
-                                    @if($auto3dprintqueue->Status != "Done" )
+                                    @if($auto3dprintqueue->Status != "Done" & $auto3dprintqueue->Status != "canceled" &$auto3dprintqueue->Status != "" )
                                         <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning  btn-xs'
                                            data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=false'><i
                                                     class='material-icons'>Unapprove</i></a>
                                     @endif
-                                    @if($auto3dprintqueue->Status == "")
+                                    @if($auto3dprintqueue->Status == "Done" | $auto3dprintqueue->Status == "canceled" | $auto3dprintqueue->Status == "")
                                         <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-info  btn-xs'
                                            data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=true'>Approve</a>
                                     @endif
