@@ -1,5 +1,5 @@
 @extends('scaffold-interface.layouts.app')
-@section('title',$Sitenavigation->PageTitle)
+@section('title', $Sitenavigation->LinkText)
 @section('head')
 
     <script>
