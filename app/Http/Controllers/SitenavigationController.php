@@ -167,7 +167,7 @@ class SitenavigationController extends Controller
 
         $Sitenavigation->LinkText = $request->LinkText;
 
-        $Sitenavigation->LinkImage = $request->LinkImage;
+        //$Sitenavigation->LinkImage = $request->LinkImage;
 
         $Sitenavigation->LinkLoginReqd = $request->LinkLoginReqd;
 
