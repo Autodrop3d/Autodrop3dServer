@@ -21,6 +21,18 @@
     @stack('head')
 </head>
 <body class="hold-transition skin-blue">
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-18917320-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments)};
+    gtag('js', new Date());
+
+    gtag('config', 'UA-18917320-7');
+</script>
+
+
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="{{url('/js/moment.js')}}"></script>
 <script src="{{url('/js/fullcalendar.js')}}"></script>
