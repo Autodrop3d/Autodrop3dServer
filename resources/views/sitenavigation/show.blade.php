@@ -17,10 +17,13 @@
 
 @section('content')
 
-    Published on {!!$Sitenavigation->PagePublishDate!!}
+
     <div>
         {!!$Sitenavigation->PageContent!!}
     </div>
 
-
+<hr>
+    <div>
+        Published on {!!$Sitenavigation->PagePublishDate!!}
+    </div>
 @endsection
