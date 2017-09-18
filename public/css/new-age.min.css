@@ -43,6 +43,17 @@ hr {
     border-width: 1px;
     border-color: rgba(34, 34, 34, 0.1);
 }
+
+div#contactFeedback{
+    padding-top: 10px;
+}
+
+input.form-control {
+    border-color: white;
+    color: white;
+    border-radius: 300px;
+    background-color: transparent;
+}
 hr.light {
     border-color: white;
 }
@@ -232,7 +243,7 @@ section h2 {
     font-size: 50px;
 }
 section.download {
-    padding: 150px 0;
+    padding: 100px 0;
     position: relative;
 }
 section.download h2 {
@@ -259,6 +270,9 @@ section.download .badges .badge-link img {
     section.download h2 {
         font-size: 70px;
     }
+}
+section.features {
+    padding-bottom: 0px;
 }
 section.features .section-heading {
     margin-bottom: 100px;
@@ -494,7 +508,12 @@ hr {
     -o-box-sizing: content-box;
     box-sizing: content-box;
 }
-
+section.theCode h2{
+    color: black;
+}
+section.theCode div.feature-item{
+    text-align: center;
+}
 h2 {
     color: white;
 }
