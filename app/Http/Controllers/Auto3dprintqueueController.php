@@ -458,24 +458,24 @@ function SliceModel($id)
     }
 
 
-    if (env('APP_PLATFORM') == 'WIN') {
-        $slicerPath = '..\\slic3r\\slic3r-console.exe';
+    if (config('app.platform') == 'WIN') {
+        $slicerPath = 'CuraEngine -v -c';
         $openScadPath = '..\\slic3r\\openscad\\openscad.com';
         $storagePath = '..\\storage\\app\\3dPrintFiles\\';
         $SlicerConfigPath = '..\\slic3r\\cura.ini';
     }
 
 
-    if (env('APP_PLATFORM') == 'LINUX') {
-        $slicerPath = '/usr/bin/slic3r';
+    if (config('app.platform') == 'LINUX') {
+        $slicerPath = 'CuraEngine -v -c';
         $openScadPath = '/usr/bin/openscad';
         $storagePath = '/var/www/html/storage/app/3dPrintFiles/';
         $SlicerConfigPath = '/var/www/html/Slic3r/cura.ini';
         putenv("DISPLAY=:0.0");
     }
 
-    if (env('APP_PLATFORM') == 'MAC') {
-        $slicerPath = '/Applications/Slic3r.app/Contents/MacOS/slic3r';
+    if (config('app.platform') == 'MAC') {
+        $slicerPath = 'CuraEngine -v -c ';
         $openScadPath = '/Applications/OpenSCAD.app/Contents/MacOS/openscad';
         $storagePath = '../storage/app/3dPrintFiles/';
         $SlicerConfigPath = '../Slic3r/cura.ini';
@@ -484,7 +484,7 @@ function SliceModel($id)
     $OpenScadThumnailGen = $openScadPath . " " . $storagePath . $auto3dprintqueue->id . ".scad -o " . $storagePath . $auto3dprintqueue->id . ".png";
 //    $RunSlicerToSlice = $slicerPath . " " . $storagePath . $auto3dprintqueue->id . ".stl  --load \"" . $SlicerConfigPath . "\"  --fill-density " . $auto3dprintqueue->Infill . $gensupport . "  --print-center 0,0";
 
-	$RunSlicerToSlice = "CuraEngine -v -c ". $SlicerConfigPath ." -s posx=0 -s posy=0 ". $gensupport ." -o " . $storagePath . $auto3dprintqueue->id .".gcode " . $storagePath . $auto3dprintqueue->id .".stl    2>&1";
+	$RunSlicerToSlice = $slicerPath ." ". $SlicerConfigPath ." -s posx=0 -s posy=0 ". $gensupport ." -o " . $storagePath . $auto3dprintqueue->id .".gcode " . $storagePath . $auto3dprintqueue->id .".stl    2>&1";
 
 
 
