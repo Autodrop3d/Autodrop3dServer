@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'Autodrop3d',
 
     /*
     |--------------------------------------------------------------------------
@@ -123,6 +123,17 @@ return [
     'log' => env('APP_LOG', 'single'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | PLatform Configuration
+    |--------------------------------------------------------------------------
+    |
+    | This sets what platform the server is being run on. These settings are used to set path variables appropriately.
+    |
+    | Available Settings: "WIN", "MAC", "LINUX"
+    */
+    'platform' => env('APP_PLATFORM', 'WIN'),
 
     /*
     |--------------------------------------------------------------------------
