@@ -66,19 +66,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="page-scroll" href="/auto3dprintqueue">The Queue</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="/cadmodel">Web-based CAD</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#theCode">The Code</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#download">Download</a>
-                </li>
-                <li>
                     <a class="page-scroll" href="#features">Features</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#theCode">Source Code</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#contact">Contact</a>
@@ -96,7 +87,7 @@
             <div class="col-sm-12">
                 <div class="header-content">
                     <div class="header-content-inner">
-                        <p><img class="img img-responsive col-xs-12 col-sm-11" src="/img/logo-strip.png"></p>
+                        <p>Hey! What's the hizzaps‽<img class="img img-responsive col-xs-12 col-sm-11" src="/img/logo-strip.png"></p>
                         <h1 class="col-xs-12">An open-source platform allowing continous 3D printing with zero human interaction.</h1>
                         <a href="#download" class="btn btn-outline btn-xl page-scroll">Check it out!</a>
                     </div>
@@ -106,17 +97,20 @@
     </div>
 </header>
 
-<section id="download" class="download bg-primary text-center">
+<section id="email" class="download bg-primary text-center">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h2 class="section-heading">Discover what all the buzz is about!</h2>
                 <p>Sign up for email updates about Autodrop3d</p>
+                <form id="contactForm">
                     <div class="form-group">
                         <input id="emailAddress" name = "emailAddress" type="text" class="form-control" placeholder="Email Address">
                     </div>
                     <button type="button" class = 'btn-w btn-outline-w btn-sm email' onclick="emailSubmit()"> <i class="fa fa-envelope-o"></i> Sign Up</button>
-                <div id="contactFeedback"></div>
+                    <input type="submit" style="display: none"/>
+                    <div id="contactFeedback"></div>
+                </form>
             </div>
         </div>
     </div>
@@ -138,17 +132,14 @@
                     <div class="device-mockup iphone6_plus portrait white">
                         <div class="device">
                             <div class="screen">
-                                <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
                                 <img src="img/phone-screen.png" class="img-responsive" alt=""> </div>
-                            <div class="button">
-                                <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="container-fluid">
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="feature-item">
@@ -164,17 +155,15 @@
                                 <p class="text-muted">Simply upload your files and receive email notification when they are printed.</p>
                             </div>
                         </div>
-
-
                     </div>
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="feature-item">
-                                <i class="fa fa-3x fa-windows"></i>
-                                <i class="fa fa-3x fa-apple"></i>
-                                <i class="fa fa-3x fa-linux"></i>
-                                <h3>Runs in the Browser</h3>
-                                <p class="text-muted">Cross-platform Compatibility</p>
+                                <i class="fa fa-4x fa-arrow-circle-down"></i>
+                                <h3>Automatic print ejection hardware</h3>
+                                <p class="text-muted">Automatic print removal so that your printer can run continuously with out human interaction.
+                                    Your parts simply fall in a bin when they are complete</p>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -185,25 +174,61 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="feature-item">
 
-                                <i class="fa fa-4x fa-arrow-circle-down"></i>
-                                <h3>Automatic ejection system hardware</h3>
-                                <p class="text-muted">We almost forgot to mention one of the most minde blowing parts of this system.
-                                We have functional automatic print removal so that your printer can run continuously with out human interaction.
-                                Your parts just fall in a bin when they are complete</p>
-                            </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section id="theCode" class="container theCode">
+    <div class="container">
+        <div class="col-lg-12 text-center">
+            <div class="section-heading">
+                <h2>Dig into the details!</h2>
+                <p class="text-muted">Check out our source code and hardware documentation</p>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="feature-item">
+                            <p class="text-muted">Autodrop3d Server</p>
+                            <a href="https://github.com/Autodrop3d/autodrop3dServer" class="btn btn-outline btn-xl">Get It On GitHub</a>
                         </div>
-
+                        <br>
                     </div>
+                    <div class="col-md-6">
+                        <div class="feature-item">
+                            <p class="text-muted">Autodrop3d Client for Raspberry Pi</p>
+                            <a href="https://github.com/Autodrop3d/autodrop3dClient" class="btn btn-outline btn-xl">Get It On GitHub</a>
+                        </div>
+                    </div>
+                </div>
 
-
-
-
-
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="feature-item">
+                            <p></p><p></p>
+                            <p class="text-muted">Hardware Design Documentation</p>
+                            <a href="/buildInstructions" class="btn btn-outline btn-xl page-scroll">Visit instructions</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="device-container">
+                <div class="device-mockup -apple portrait white">
+                    <div class="device">
+                        <div class="screen">
+                            <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                            <img src="img/demo-screen-2.png" class="img-responsive" alt=""> </div>
+                        <div class="button">
+                            <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -220,73 +245,19 @@
     <div class="overlay"></div>
 </section>
 
-
-<section id="theCode" class="container">
-    <div class="container">
-
-
-            <div class="col-md-8">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="feature-item">
-                                <p class="text-muted">3d Print Queue server source code</p>
-                                <a href="https://github.com/Autodrop3d/autodrop3dServer" class="btn btn-outline btn-xl page-scroll">Get It On GitHub</a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="feature-item">
-                                <p class="text-muted">Gcode sender for rasberry pi</p>
-                                <a href="https://github.com/Autodrop3d/autodrop3dClient" class="btn btn-outline btn-xl page-scroll">Get It On GitHub</a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="feature-item">
-                                <p></p><p></p>
-                                <p class="text-muted">Design plans for 3D printer</p>
-                                <a href="/buildInstructions" class="btn btn-outline btn-xl page-scroll">Visit instructions</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="device-container">
-                    <div class="device-mockup -apple portrait white">
-                        <div class="device">
-                            <div class="screen">
-                                <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                <img src="img/demo-screen-2.png" class="img-responsive" alt=""> </div>
-                            <div class="button">
-                                <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-</section>
-
-
 <section id="contact" class="contact bg-primary">
     <div class="container">
         <h2>We <i class="fa fa-heart"></i> new friends!</h2>
         <ul class="list-inline list-social">
-            <li class="social-twitter">
-                <a href="#"><i class="fa fa-twitter"></i></a>
-            </li>
+            {{--<li class="social-twitter">--}}
+            {{--<a href="#"><i class="fa fa-twitter"></i></a>--}}
+            {{--</li>--}}
             <li class="social-facebook">
-                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.facebook.com/autodrop3d/"><i class="fa fa-facebook"></i></a>
             </li>
-            <li class="social-google-plus">
-                <a href="#"><i class="fa fa-google-plus"></i></a>
-            </li>
+            {{--<li class="social-google-plus">--}}
+            {{--<a href="#"><i class="fa fa-google-plus"></i></a>--}}
+            {{--</li>--}}
         </ul>
     </div>
 </section>
@@ -294,17 +265,17 @@
 <footer>
     <div class="container">
         <p>&copy; 2017 Autodrop3d</p>
-        <ul class="list-inline">
-            <li>
-                <a href="#">Privacy</a>
-            </li>
-            <li>
-                <a href="#">Terms</a>
-            </li>
-            <li>
-                <a href="#">FAQ</a>
-            </li>
-        </ul>
+        {{--<ul class="list-inline">--}}
+        {{--<li>--}}
+        {{--<a href="#">Privacy</a>--}}
+        {{--</li>--}}
+        {{--<li>--}}
+        {{--<a href="#">Terms</a>--}}
+        {{--</li>--}}
+        {{--<li>--}}
+        {{--<a href="#">FAQ</a>--}}
+        {{--</li>--}}
+        {{--</ul>--}}
     </div>
 </footer>
 
@@ -330,17 +301,22 @@
     });
 
     function emailSubmit() {
-        $.post('{!! url('contactAjax') !!}',
+        $.ajax({method: 'post', url: "{!! url('contactAjax') !!}", dataType: 'json',data:
             {emailAddress: $('#emailAddress').val()
-            }, provideFeedback);
+            }}).error(provideFeedback).success(provideFeedback);
         return false;
     }
 
     function provideFeedback(data) {
         var feedback = $('#contactFeedback');
-        feedback.val(data);
+        feedback.html(data["responseJSON"]["emailAddress"]);
         return false;
     }
+
+    $('#contactForm').submit(function () {
+        emailSubmit();
+        return false;
+    });
 </script>
 
 </body>
