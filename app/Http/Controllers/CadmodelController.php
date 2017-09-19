@@ -112,6 +112,7 @@ class CadmodelController extends Controller
      */
     public function edit($id,Request $request)
     {
+        $agent = new Agent();
         $title = 'Edit - cadmodel';
         if($request->ajax())
         {
@@ -120,7 +121,7 @@ class CadmodelController extends Controller
 
         
         $cadmodel = Cadmodel::findOrfail($id);
-        return view('cadmodel.edit',compact('title','cadmodel'  ));
+        return view('cadmodel.edit',compact('title','cadmodel' ,'agent' ));
     }
 
     /**
