@@ -89,7 +89,7 @@
                     <div class="header-content-inner">
                         <p>Hey! What's the hizzaps‽<img class="img img-responsive col-xs-12 col-sm-11" src="/img/logo-strip.png"></p>
                         <h1 class="col-xs-12">An open-source platform allowing continous 3D printing with zero human interaction.</h1>
-                        <a href="#download" class="btn btn-outline btn-xl page-scroll">Check it out!</a>
+                        {{--<a href="#download" class="btn btn-outline btn-xl page-scroll">Check it out!</a>--}}
                     </div>
                 </div>
             </div>
