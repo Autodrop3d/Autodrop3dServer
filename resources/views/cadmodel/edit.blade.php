@@ -145,11 +145,18 @@
             // resize on window resize
             $(window).on('resize', SetIframeSize);
 
+            @if($agent->isDesktop())
+
             function SetIframeSize() {
                 $("#cad").width($(window).width() - 275); // added margin for scrollbars
                 $("#cad").height($(window).height() - 150);
             }
-
+            @else
+            function SetIframeSize() {
+                $("#cad").width($(window).width() - 10); // added margin for scrollbars
+                $("#cad").height($(window).height() - 100);
+            }
+            @endif
 
         </script>
 

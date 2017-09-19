@@ -10,6 +10,7 @@ use Amranidev\Ajaxis\Ajaxis;
 use URL;
 
 use Storage;
+use Jenssegers\Agent\Agent;
 
 /**
  * Class CadmodelController.
@@ -91,6 +92,7 @@ class CadmodelController extends Controller
      */
     public function show($id,Request $request)
     {
+        $agent = new Agent();
         $title = 'Show - cadmodel';
 
         if($request->ajax())
@@ -99,7 +101,7 @@ class CadmodelController extends Controller
         }
 
         $cadmodel = Cadmodel::findOrfail($id);
-        return view('cadmodel.show',compact('title','cadmodel'));
+        return view('cadmodel.show',compact('title','cadmodel', 'agent'));
     }
 
     /**
