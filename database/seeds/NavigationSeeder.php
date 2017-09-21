@@ -14,7 +14,7 @@ class NavigationSeeder extends Seeder
 
         \App\Sitenavigation::create([
             'LinkText'=>'3D Printer Queue',
-            'LinkImage'=>'/Images/3d_printer1600.png',
+            'LinkImage'=>'/Images/3d_printer1600.svg',
             'LinkLoginReqd'=>'',
             'LinkURL'=>'auto3dprintqueue',
             'LinkDescription'=>'Check out the queued 3D prints',
@@ -22,7 +22,7 @@ class NavigationSeeder extends Seeder
 
         \App\Sitenavigation::create([
             'LinkText'=>'Web CAD',
-            'LinkImage'=>'',
+            'LinkImage'=>'/Images/object_cube.svg',
             'LinkLoginReqd'=>'',
             'LinkURL'=>'cadmodel',
             'LinkDescription'=>'Create and edit your model',

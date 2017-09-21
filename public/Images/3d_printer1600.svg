@@ -7,7 +7,6 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg2"
@@ -26,16 +25,22 @@
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
         <dc:title></dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
       </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
     </rdf:RDF>
   </metadata>
   <defs
-     id="defs6">
-    <color-profile
-       name="sRGB-display-profile-with-display-hardware-configuration-data-derived-from-calibration"
-       xlink:href="C:\WINDOWS\system32\spool\drivers\color\CalibratedDisplayProfile-3.icc"
-       id="color-profile4322" />
-  </defs>
+     id="defs6" />
   <sodipodi:namedview
      pagecolor="#a4ffff"
      bordercolor="#666666"
@@ -55,7 +60,7 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="20.85965"
-     inkscape:cx="14.547365"
+     inkscape:cx="14.451486"
      inkscape:cy="12.177399"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
@@ -77,6 +82,8 @@
        style="fill:#f9f9f9;fill-opacity:1;stroke:none"
        d="m 4.6644239,17.020605 0,-9.499999 2,0 2,0 0,1 0,0.999999 -1,0 -1,0 0,7.5 0,7.5 6.5000001,0 6.5,0 0,-1 0,-1 2.5,0 2.5,0 0,-6.5 0,-6.5 -6,0 -6,0 0,-0.99995 0,-0.999951 3.994886,-0.005 3.994886,-0.0051 L 20.00431,7.26687 C 17.773589,6.430257 15.992648,5.8795375 14.784424,5.6527271 c -0.531081,-0.099696 -0.717016,-0.1202642 -1.09,-0.1205782 -0.307297,-2.58e-4 -0.386352,0.00628 -0.54,0.044685 -0.774928,0.1936818 -1.223027,0.8413681 -1.434727,2.0737701 -0.0391,0.22761 -0.04164,0.333692 -0.04932,2.054999 l -0.0081,1.815 -1.00015,0 -1.0001491,0 0.0081,-1.855 c 0.0085,-1.951457 0.0074,-1.925096 0.10407,-2.484999 0.4226361,-2.4478367 2.0003391,-3.8006351 4.2484651,-3.6428373 0.949612,0.066654 2.068904,0.3156872 3.701814,0.8236224 2.041866,0.6351458 4.993536,1.7681904 7.51,2.8828319 l 0.6,0.265764 0.415,0.0061 0.415,0.0061 0,9.499228 0,9.499227 -11,0 -11.0000001,0 0,-9.5 z m 8.4953631,3.834972 -2.494636,-1.384972 3.72e-4,-2.66 3.72e-4,-2.66 2.499264,-1.386622 2.499265,-1.386623 2.499264,1.386623 2.499266,1.386622 3.8e-4,2.66 3.8e-4,2.66 -2.494806,1.385 c -1.372143,0.76175 -2.499232,1.384988 -2.504641,1.384972 -0.0054,-1.4e-5 -1.132422,-0.623264 -2.504472,-1.385 z m 1.489835,-3.356151 c -0.0084,-0.0075 -0.411198,-0.227324 -0.895198,-0.488572 -0.484,-0.261248 -0.92725,-0.501588 -0.985,-0.53409 l -0.105,-0.05909 0,0.939042 0,0.939042 0.995,0.550908 0.995,0.550907 0.0052,-0.942283 c 0.0029,-0.518256 -0.0016,-0.948393 -0.01,-0.95586 z m 3.109802,1.297392 0.905,-0.500868 0,-0.937775 0,-0.937775 -0.165,0.08935 c -0.09075,0.04914 -0.5385,0.291707 -0.995,0.539033 l -0.83,0.449684 -0.0052,0.952889 -0.0052,0.952889 0.0952,-0.05328 c 0.05236,-0.0293 0.502445,-0.278669 1.000195,-0.554146 z m -1.12371,-3.549743 c 0.521574,-0.282441 0.946155,-0.515505 0.943513,-0.517919 -0.0026,-0.0024 -0.434553,-0.243117 -0.959803,-0.534894 l -0.955,-0.530503 -0.955,0.530503 c -0.52525,0.291777 -0.957158,0.532476 -0.959796,0.534886 -0.0092,0.0084 1.884999,1.029824 1.911282,1.030637 0.01457,4.52e-4 0.45323,-0.230268 0.974804,-0.51271 z"
        id="path4332"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>
