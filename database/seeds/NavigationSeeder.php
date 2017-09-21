@@ -13,8 +13,8 @@ class NavigationSeeder extends Seeder
     {
 
         \App\Sitenavigation::create([
-            'LinkText'=>'3D Printer Queue ',
-            'LinkImage'=>'',
+            'LinkText'=>'3D Printer Queue',
+            'LinkImage'=>'/Images/3d_printer1600.png',
             'LinkLoginReqd'=>'',
             'LinkURL'=>'auto3dprintqueue',
             'LinkDescription'=>'Check out the queued 3D prints',

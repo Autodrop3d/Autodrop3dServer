@@ -13,42 +13,9 @@ class permissionSeeder extends Seeder
     public function run()
     {
         Permission::create(['name'=>'administrate']);
-        Permission::create(['name'=>'create users']);
-        Permission::create(['name'=>'read users']);
-        Permission::create(['name'=>'update users']);
-        Permission::create(['name'=>'delete users']);
-        Permission::create(['name'=>'create events']);
-        Permission::create(['name'=>'approve events']);
-        Permission::create(['name'=>'read events']);
-        Permission::create(['name'=>'update events']);
-        Permission::create(['name'=>'delete events']);
-        Permission::create(['name'=>'create event templates']);
-        Permission::create(['name'=>'approve event templates']);
-        Permission::create(['name'=>'read event templates']);
-        Permission::create(['name'=>'update event templates']);
-        Permission::create(['name'=>'delete event templates']);
-        Permission::create(['name'=>'create posts']);
-        Permission::create(['name'=>'read posts']);
-        Permission::create(['name'=>'update posts']);
-        Permission::create(['name'=>'delete posts']);
-        Permission::create(['name'=>'administrate posts']);
-        Permission::create(['name'=>'create images']);
-        Permission::create(['name'=>'read images']);
-        Permission::create(['name'=>'update images']);
-        Permission::create(['name'=>'delete images']);
-        Permission::create(['name'=>'administrate images']);
-        Permission::create(['name'=>'create resources']);
-        Permission::create(['name'=>'read resources']);
-        Permission::create(['name'=>'update resources']);
-        Permission::create(['name'=>'delete resources']);
-        Permission::create(['name'=>'create comments']);
-        Permission::create(['name'=>'read comments']);
-        Permission::create(['name'=>'update comments']);
-        Permission::create(['name'=>'delete comments']);
-        Permission::create(['name'=>'administrate comments']);
-        Permission::create(['name'=>'create groups']);
-        Permission::create(['name'=>'read groups']);
-        Permission::create(['name'=>'update groups']);
-        Permission::create(['name'=>'delete groups']);
+        Permission::create(['name'=>'approve prints']);
+        Permission::create(['name'=>'unapprove prints']);
+        Permission::create(['name'=>'upload stl']);
+        Permission::create(['name'=>'view all prints']);
     }
 }

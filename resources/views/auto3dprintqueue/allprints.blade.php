@@ -5,21 +5,19 @@
 
     <section class="content">
         <h1>
-            Your 3D Prints
+            Entire 3D Printer Queue
         </h1>
         <div style="float: left;">
             <form class='col s3' method='get' action='{!!url("auto3dprintqueue")!!}/create'>
-                <button class='btn btn-primary' type='submit'>Upload a new STL file to be printed!</button>
+                <button class='btn btn-primary' type='submit'>Upload a new file to be printed!</button>
             </form>
         </div>
-        @can('view all prints')
         <div style="float: left;">
-            <form class='col s3' method='get' action='{!!url("auto3dprintqueueall")!!}'>
-                <button class='btn btn-primary' type='submit'>Show All Prints</button>
+            <form class='col s3' method='get' action='{!!url("auto3dprintqueue")!!}'>
+                <button class='btn btn-success' type='submit'>Show My Prints</button>
                 <input id="id" name="id" type="hidden" class="form-control">
             </form>
         </div>
-        @endcan
         <hr>
         <div style="width: 100%;">
             <br>
@@ -38,7 +36,7 @@
                     <thead>
                     <th>Name</th>
                     <th>Infill<br>Material</th>
-                    {{--<th>name</th>--}}
+                    <th>User</th>
                     <th>actions</th>
                     </thead>
                     <tbody>
@@ -59,7 +57,7 @@
                             Material: {!!$auto3dprintqueue->auto3dprintmaterial->material!!}
                             </td>
 
-                            {{--<td>{!!$auto3dprintqueue->user->name!!}</td>--}}
+                            <td>{!!$auto3dprintqueue->user->name!!}</td>
                             <td><div class="btn-group-vertical">
 
 

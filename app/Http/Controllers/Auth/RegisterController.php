@@ -82,6 +82,7 @@ class RegisterController extends Controller
             'accountType' => 'member',
             'password' => bcrypt($data['password']),
         ]);
+        $user->assignRole('member');
         return $user;
     }
 }

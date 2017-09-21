@@ -1,8 +1,10 @@
+@hasrole('superadmin')
 <li class="active treeview">
     <a href="{{url('scaffold-dashboard')}}">
         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
     </a>
 </li>
+@endhasrole()
 
 @foreach(\App\Sitenavigation::all() as $Sitenavigation)
     <li class="treeview">

@@ -14,8 +14,8 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.5/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.5/css/skins/skin-blue.min.css">
+    <link rel="stylesheet" href="{{url('css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="{{url('css/skin-blue.min.css')}}">
     <link rel="stylesheet" href="{{url('css/fullcalendar.css')}}">
     <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.min.css')}}">
     @stack('head')
@@ -56,26 +56,26 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <!-- Notification Navbar List-->
-                    <li class="dropdown notifications-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="label notification-label">new</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">Your notifications</li>
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu notification-menu">
-                                </ul>
-                            </li>
-                            <li class="footer"><a href="#">View all</a></li>
-                        </ul>
-                    </li>
-                    @hasanyrole(['superadmin','admin'])
-                    <li class="">
-                        <button class="nav navbar-brand btn-link" data-toggle="control-sidebar"><i class="fa fa-cog"></i></button>
-                    </li>
-                    @endhasanyrole
+                    {{--<li class="dropdown notifications-menu">--}}
+                        {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
+                            {{--<i class="fa fa-bell-o"></i>--}}
+                            {{--<span class="label notification-label">new</span>--}}
+                        {{--</a>--}}
+                        {{--<ul class="dropdown-menu">--}}
+                            {{--<li class="header">Your notifications</li>--}}
+                            {{--<li>--}}
+                                {{--<!-- inner menu: contains the actual data -->--}}
+                                {{--<ul class="menu notification-menu">--}}
+                                {{--</ul>--}}
+                            {{--</li>--}}
+                            {{--<li class="footer"><a href="#">View all</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
+                    {{--@hasanyrole(['superadmin','admin'])--}}
+                    {{--<li class="">--}}
+                        {{--<button class="nav navbar-brand btn-link" data-toggle="control-sidebar"><i class="fa fa-cog"></i></button>--}}
+                    {{--</li>--}}
+                    {{--@endhasanyrole--}}
                     <!-- END notification navbar list-->
                     @if(Auth::user())
                         <li class="dropdown user user-menu">
@@ -88,12 +88,12 @@
 
                                 <li class="user-header">
                                     <div class="btn btn-default btn-flat">
-                                    <A href="{{Auth::user()->UserUrl()}}"  >
+                                    {{--<A href="{{Auth::user()->UserUrl()}}"  >--}}
                                         {{--<img src="{{url(Auth::user()->image->path)}}" class="img-circle" alt="User Image">--}}
                                         <p>
                                             {{Auth::user()->name}}
                                         </p>
-                                    </A>
+                                    {{--</A>--}}
                                     </div>
                                 </li>
 
