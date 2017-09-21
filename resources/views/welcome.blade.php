@@ -59,7 +59,7 @@
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand page-scroll" href="#page-top"><!--INSERT TEXT FOR TOP CORNER HERE.--></a>
-            <!--<a class="navbar-brand page-scroll" href="#page-top">Autodrop3d</a>-->
+            <a class="navbar-brand page-scroll" href="#page-top">Autodrop3d</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -89,7 +89,7 @@
                     <div class="header-content-inner">
                         <p>Hey! What's the hizzaps‽<img class="img img-responsive col-xs-12 col-sm-11" src="/img/logo-strip.png"></p>
                         <h1 class="col-xs-12">An open-source platform allowing continous 3D printing with zero human interaction.</h1>
-                        {{--<a href="#download" class="btn btn-outline btn-xl page-scroll">Check it out!</a>--}}
+                        <a href="/auto3dprintqueue" class="btn btn-outline btn-xl page-scroll">Check it out!</a>
                     </div>
                 </div>
             </div>

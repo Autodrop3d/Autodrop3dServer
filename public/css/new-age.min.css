@@ -127,7 +127,8 @@ p {
         border-color: transparent;
     }
     .navbar-default .navbar-header .navbar-brand {
-        color: rgba(255, 255, 255, 0.7);
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.7);
     }
     .navbar-default .navbar-header .navbar-brand:hover,
     .navbar-default .navbar-header .navbar-brand:focus {
@@ -171,6 +172,19 @@ header {
     background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #1773db, #21db36);
     /* Chrome 10-25, Safari 5.1-6 */
     background: url("../img/bg-pattern.png"), linear-gradient(to left, #1773db, #21db36);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: black;
+}
+header.error {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    overflow-y: hidden;
+    background: url("../img/bg-pattern.png"), #eb1611;
+    /* fallback for old browsers */
+    background: url("../img/bg-pattern.png"), -webkit-linear-gradient(to left, #766015, #eb1611);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: url("../img/bg-pattern.png"), linear-gradient(to left, #766015, #eb1611);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: black;
 }

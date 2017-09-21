@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('500', function()
+{
+    abort(500);
+});
 
 Route::group(['middleware' => 'web'], function () {
     Route::get('/', function () {

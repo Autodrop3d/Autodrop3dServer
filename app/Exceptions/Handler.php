@@ -42,9 +42,21 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $e)
     {
-        return parent::render($request, $exception);
+
+        // 404 page when a model is not found
+        if ($e instanceof ModelNotFoundException) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        // Custom error 500 view on production
+        if (app()->environment() == 'production') {
+            return response()->view('errors.500', [], 500);
+        }
+
+        return parent::render($request, $e);
+
     }
 
     /**
