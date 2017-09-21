@@ -38,6 +38,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Auto3dprintqueue whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Auto3dprintqueue whereDeletedAt($value)
  * @mixin \Eloquent
+ * @property string|null $SlicerResults
+ * @property int|null $SizeX
+ * @property int|null $SizeY
+ * @property int|null $SizeZ
+ * @property int|null $genenerateSupport
+ * @property int|null $filament_used
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Auto3dprintqueue onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Auto3dprintqueue whereFilamentUsed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Auto3dprintqueue whereGenenerateSupport($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Auto3dprintqueue whereSizeX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Auto3dprintqueue whereSizeY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Auto3dprintqueue whereSizeZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Auto3dprintqueue whereSlicerResults($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Auto3dprintqueue withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Auto3dprintqueue withoutTrashed()
  */
 class Auto3dprintqueue extends Model
 {

@@ -4,21 +4,19 @@
 
 <section class="content">
     <h1>
-        Your CAD Models
+        All Users' CAD Models
     </h1>
     <div style="float: left;">
         <form class = 'col s3' method = 'get' action = '{!!url("cadmodel")!!}/create'>
             <button class = 'btn btn-primary' type = 'submit'>Create New CAD Model</button>
         </form>
     </div>
-    @can('view all prints')
-        <div style="float: left;">
-            <form class='col s3' method='get' action='{!!url("cadmodelall")!!}'>
-                <button class='btn btn-primary' type='submit'>Show All CAD Models</button>
-                <input id="id" name="id" type="hidden" class="form-control">
-            </form>
-        </div>
-    @endcan
+    <div style="float: left;">
+        <form class='col s3' method='get' action='{!!url("cadmodel")!!}'>
+            <button class='btn btn-success' type='submit'>Show My CAD Models</button>
+            <input id="id" name="id" type="hidden" class="form-control">
+        </form>
+    </div>
     <br>
     <br>
     <table class = "table table-striped table-bordered table-hover" style = 'background:#fff'>

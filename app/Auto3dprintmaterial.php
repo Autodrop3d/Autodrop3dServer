@@ -21,6 +21,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Auto3dprintmaterial whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Auto3dprintmaterial whereDeletedAt($value)
  * @mixin \Eloquent
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Auto3dprintmaterial onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Query\Builder|\App\Auto3dprintmaterial withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Auto3dprintmaterial withoutTrashed()
  */
 class Auto3dprintmaterial extends Model
 {
@@ -32,5 +37,12 @@ class Auto3dprintmaterial extends Model
 	
     protected $table = 'auto3dprintmaterials';
 
+    public static function asArray(){
+        $returnArray = [];
+        foreach (self::all() as $material){
+            $returnArray[$material->id] = $material->material;
+        }
+        return $returnArray;
+    }
 	
 }

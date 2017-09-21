@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Cadmodel;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Cadmodel;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 
@@ -28,8 +27,15 @@ class CadmodelController extends Controller
     public function index()
     {
         $title = 'Index - cadmodel';
-        $cadmodels = Cadmodel::orderBy('created_at', 'dec')->paginate(10);
+        $cadmodels = \Auth::user()->cadmodels()->orderByDesc('updated_at')->paginate(10);
         return view('cadmodel.index',compact('cadmodels','title'));
+    }
+
+    public function AllUserindex()
+    {
+        $title = 'All CAD Models';
+        $cadmodels = Cadmodel::orderByDesc('updated_at')->paginate(10);
+        return view('cadmodel.allmodels',compact('cadmodels','title'));
     }
 
     /**
@@ -54,6 +60,7 @@ class CadmodelController extends Controller
     {
         $cadmodel = new Cadmodel();
 
+
         
         $cadmodel->Name = $request->Name;
 
@@ -66,8 +73,8 @@ class CadmodelController extends Controller
         
         $cadmodel->Material = $request->Material;
 
-        
-        
+        $cadmodel->user_id = \Auth::user()->id;
+
         $cadmodel->save();
 
         $pusher = App::make('pusher');

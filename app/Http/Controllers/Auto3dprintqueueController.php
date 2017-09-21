@@ -61,7 +61,7 @@ class Auto3dprintqueueController extends Controller
 
         // \Auth::user()->id
 
-        return view('auto3dprintqueue.index', compact('auto3dprintqueues', 'title'));
+        return view('auto3dprintqueue.allprints', compact('auto3dprintqueues', 'title'));
     }
 
     /**

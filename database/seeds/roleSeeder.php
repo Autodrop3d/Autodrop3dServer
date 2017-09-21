@@ -13,10 +13,6 @@ class roleSeeder extends Seeder
     public function run()
     {
         Role::create(['name'=>'member']);
-        Role::create(['name'=>'working member']);
-        Role::create(['name'=>'nonmember']);
-        Role::create(['name'=>'lead']);
-        Role::create(['name'=>'admin']);
         Role::create(['name'=>'superadmin'])->syncPermissions(\Spatie\Permission\Models\Permission::all());
     }
 }

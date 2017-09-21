@@ -21,6 +21,8 @@ elixir(function(mix) {
     );
 
     mix.styles('new-age.css','public/css/new-age.min.css');
+    mix.styles('skin-blue.css','public/css/skin-blue.min.css');
+    mix.styles('AdminLTE.css','public/css/AdminLTE.min.css');
 
     mix.sass('app.scss')
        .webpack('app.js');

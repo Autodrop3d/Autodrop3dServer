@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="en">
 
 <head>
@@ -178,7 +179,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <section id="theCode" class="container theCode">
@@ -233,7 +233,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <section class="cta">
@@ -258,7 +257,7 @@
                 <a href="https://www.facebook.com/autodrop3d/"><i class="fa fa-facebook"></i></a>
             </li>
             <li class="social-google-plus">
-            <a href="https://plus.google.com/communities/106790991570200175366"><i class="fa fa-google-plus"></i></a>
+                <a href="https://plus.google.com/communities/106790991570200175366"><i class="fa fa-google-plus"></i></a>
             </li>
         </ul>
     </div>

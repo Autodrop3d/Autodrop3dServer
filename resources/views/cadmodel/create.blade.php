@@ -20,14 +20,14 @@
             <label for="Description">Description</label>
             <input id="Description" name = "Description" type="text" class="form-control">
         </div>
-        <div class="form-group">
-            <label for="ModelFile">ModelFile</label>
-            <input id="ModelFile" name = "ModelFile" type="text" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="Material">Material</label>
-            <input id="Material" name = "Material" type="text" class="form-control">
-        </div>
+        {{--<div class="form-group">--}}
+            {{--<label for="ModelFile">ModelFile</label>--}}
+            <hidden id="ModelFile" name = "ModelFile">
+        {{--</div>--}}
+        {{--<div class="form-group">--}}
+            {{--<label for="Material">Material</label>--}}
+            {{--{!! Form::select('Material',App\Auto3dprintmaterial::asArray()) !!}--}}
+        {{--</div>--}}
         <button class = 'btn btn-primary' type ='submit'>Create</button>
     </form>
 </section>
