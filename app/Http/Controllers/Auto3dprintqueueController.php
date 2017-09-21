@@ -452,17 +452,19 @@ function SliceModel($id)
     $auto3dprintqueue = Auto3dprintqueue::findOrfail($id);
 
 
-    $gensupport = "";
+    $printoptions = "";
     if ($auto3dprintqueue->genenerateSupport != 1) {
-        $gensupport = "  -s supportAngle=-1 -s supportEverywhere=0  ";
+        $printoptions = "  -s supportAngle=-1 -s supportEverywhere=0  ";
     }
+
+    $printoptions = $printoptions. "  -s sparseInfillLineDistance=" . intval(-0.508+(43333.6595/ $auto3dprintqueue->Infill )) . "  ";
 
 
     if (config('app.platform') == 'WIN') {
-        $slicerPath = 'CuraEngine -v -c';
+        $slicerPath = '"C:\\Program Files (x86)\\Cura_15.04.6\\CuraEngine.exe" -v -c';
         $openScadPath = '..\\slic3r\\openscad\\openscad.com';
-        $storagePath = '..\\storage\\app\\3dPrintFiles\\';
-        $SlicerConfigPath = '..\\slic3r\\cura.ini';
+        $storagePath = 'C:\\laragon\\www\\autodrop3dServer\\storage\\app\\3dPrintFiles\\';
+        $SlicerConfigPath = '"C:\\laragon\\www\\autodrop3dServer\\slic3r\\cura.ini"';
     }
 
 
@@ -481,10 +483,13 @@ function SliceModel($id)
         $SlicerConfigPath = '../Slic3r/cura.ini';
     }
 
+
+ //   dd( $slicerPath ." ". $SlicerConfigPath ." -s posx=0 -s posy=0 ". $printoptions ." -o " . $storagePath . $auto3dprintqueue->id .".gcode " . $storagePath . $auto3dprintqueue->id .".stl    2>&1");
+
     $OpenScadThumnailGen = $openScadPath . " " . $storagePath . $auto3dprintqueue->id . ".scad -o " . $storagePath . $auto3dprintqueue->id . ".png";
 //    $RunSlicerToSlice = $slicerPath . " " . $storagePath . $auto3dprintqueue->id . ".stl  --load \"" . $SlicerConfigPath . "\"  --fill-density " . $auto3dprintqueue->Infill . $gensupport . "  --print-center 0,0";
 
-	$RunSlicerToSlice = $slicerPath ." ". $SlicerConfigPath ." -s posx=0 -s posy=0 ". $gensupport ." -o " . $storagePath . $auto3dprintqueue->id .".gcode " . $storagePath . $auto3dprintqueue->id .".stl    2>&1";
+	$RunSlicerToSlice = $slicerPath ." ". $SlicerConfigPath ." -s posx=0 -s posy=0 ". $printoptions ." -o " . $storagePath . $auto3dprintqueue->id .".gcode " . $storagePath . $auto3dprintqueue->id .".stl    2>&1";
 
 
 
