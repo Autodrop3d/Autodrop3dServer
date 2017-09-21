@@ -72,7 +72,7 @@
                     <div class="header-content-inner" style="text-align: center; width: 100%">
                         <h1 style="font-size: 800%">500</h1>
                         <h1 class="col-xs-12" style="font-weight: bold">
-                            And where did you think you're going?
+                            And where do you think you're going?
                         </h1><h2>
                             <a href="{{url('/')}}">Bring me back home!</a>
                         </h2>
