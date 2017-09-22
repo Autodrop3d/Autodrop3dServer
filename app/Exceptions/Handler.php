@@ -50,10 +50,11 @@ class Handler extends ExceptionHandler
             return response()->view('errors.404', [], 404);
         }
 
-        // Custom error 500 view on production
-        if (app()->environment() == 'production') {
-            return response()->view('errors.500', [], 500);
-        }
+//         Custom error 500 view on production
+//        if (app()->environment() == 'production')
+//            if(
+//            return response()->view('errors.500', [], 500);
+//        }
 
         return parent::render($request, $e);
 
