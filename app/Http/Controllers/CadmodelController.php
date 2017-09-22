@@ -68,10 +68,10 @@ class CadmodelController extends Controller
         $cadmodel->Description = $request->Description;
 
         
-        $cadmodel->ModelFile = $request->ModelFile;
+        $cadmodel->ModelFile = "";
 
         
-        $cadmodel->Material = $request->Material;
+        $cadmodel->Material = "";
 
         $cadmodel->user_id = \Auth::user()->id;
 
