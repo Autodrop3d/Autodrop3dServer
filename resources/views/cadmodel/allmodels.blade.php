@@ -6,11 +6,13 @@
     <h1>
         All Users' CAD Models
     </h1>
+    @can('upload stl')
     <div style="float: left;">
         <form class = 'col s3' method = 'get' action = '{!!url("cadmodel")!!}/create'>
             <button class = 'btn btn-primary' type = 'submit'>Create New CAD Model</button>
         </form>
     </div>
+    @endcan()
     <div style="float: left;">
         <form class='col s3' method='get' action='{!!url("cadmodel")!!}'>
             <button class='btn btn-success' type='submit'>Show My CAD Models</button>

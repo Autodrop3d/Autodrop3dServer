@@ -7,11 +7,13 @@
         <h1>
             Entire 3D Printer Queue
         </h1>
+        @can('upload stl')
         <div style="float: left;">
             <form class='col s3' method='get' action='{!!url("auto3dprintqueue")!!}/create'>
                 <button class='btn btn-primary' type='submit'>Upload a new file to be printed!</button>
             </form>
         </div>
+        @endcan()
         <div style="float: left;">
             <form class='col s3' method='get' action='{!!url("auto3dprintqueue")!!}'>
                 <button class='btn btn-success' type='submit'>Show My Prints</button>
@@ -45,16 +47,16 @@
                             <td>
 
                                 <a href="{!! url('auto3dprintqueue/'.$auto3dprintqueue->id) !!}">
-                                <img src="{!! url('auto3dprintqueue/'.$auto3dprintqueue->id.'/thumb.png') !!}" style="width:100px;height:100px;">
+                                    <img src="{!! url('auto3dprintqueue/'.$auto3dprintqueue->id.'/thumb.png') !!}" style="width:100px;height:100px;">
                                     <div>{!!$auto3dprintqueue->Name!!}
-                                    <br>
-                                    Status: {!!$auto3dprintqueue->Status!!}
+                                        <br>
+                                        Status: {!!$auto3dprintqueue->Status!!}
                                     </div>
                                 </a>
                             </td>
                             <td>Infill: {!!$auto3dprintqueue->Infill!!}<br>
 
-                            Material: {!!$auto3dprintqueue->auto3dprintmaterial->material!!}
+                                Material: {!!$auto3dprintqueue->auto3dprintmaterial->material!!}
                             </td>
 
                             <td>{!!$auto3dprintqueue->user->name!!}</td>
@@ -64,17 +66,19 @@
                                     <a data-toggle="modal" data-target="#myModal" class='delete btn btn-danger  btn-xs'
                                        data-link="/auto3dprintqueue/{!!$auto3dprintqueue->id!!}/deleteMsg">delete</a>
 
-
-                                    @if($auto3dprintqueue->Status != "Done" & $auto3dprintqueue->Status != "canceled" &$auto3dprintqueue->Status != "" )
-                                        <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning  btn-xs'
-                                           data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=false'><i
-                                                    class='material-icons'>Unapprove</i></a>
-                                    @endif
-                                    @if($auto3dprintqueue->Status == "Done" | $auto3dprintqueue->Status == "canceled" | $auto3dprintqueue->Status == "")
-                                        <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-info  btn-xs'
-                                           data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=true'>Approve</a>
-                                    @endif
-
+                                    @can('unapprove prints')
+                                        @if($auto3dprintqueue->Status != "Done" & $auto3dprintqueue->Status != "canceled" &$auto3dprintqueue->Status != "" )
+                                            <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-warning  btn-xs'
+                                               data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=false'><i
+                                                        class='material-icons'>Unapprove</i></a>
+                                        @endif
+                                    @endcan()
+                                    @can('approve prints')
+                                        @if($auto3dprintqueue->Status == "Done" | $auto3dprintqueue->Status == "canceled" | $auto3dprintqueue->Status == "")
+                                            <a data-toggle="modal" data-target="#myModal" class='viewShow btn btn-info  btn-xs'
+                                               data-link='/auto3dprintqueue/{!!$auto3dprintqueue->id!!}?printnow=true'>Approve</a>
+                                        @endif
+                                    @endcan()
                                 </div>
                             </td>
                         </tr>

@@ -22,7 +22,7 @@
         </div>
         {{--<div class="form-group">--}}
             {{--<label for="ModelFile">ModelFile</label>--}}
-            <hidden id="ModelFile" name = "ModelFile">
+        <input id="ModelFile" name="ModelFile" value="" hidden>
         {{--</div>--}}
         {{--<div class="form-group">--}}
             {{--<label for="Material">Material</label>--}}
