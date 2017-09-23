@@ -35,9 +35,6 @@ Route::group(['middleware' => 'web'], function () {
 //these routes require the user to be logged in.
     Route::group(['middleware' => ['auth']], function () {
 
-        Route::get('u/{username}','\App\Http\Controllers\ScaffoldInterface\UserController@view');
-
-
         //cadmodel Routes
         Route::group(['middleware'=> 'web'],function(){
             Route::resource('cadmodel','\App\Http\Controllers\CadmodelController');
@@ -48,8 +45,6 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('cadmodel/{id}/delete','\App\Http\Controllers\CadmodelController@destroy');
             Route::get('cadmodel/{id}/deleteMsg','\App\Http\Controllers\CadmodelController@DeleteMsg');
         });
-
-
 
 //auto3dprintmaterial Routes
         Route::resource('auto3dprintmaterial', '\App\Http\Controllers\Auto3dprintmaterialController');
@@ -70,7 +65,6 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::get('auto3dprintqueue/{id}/file.stl', '\App\Http\Controllers\Auto3dprintqueueController@showSTL');
         Route::get('auto3dprintqueue/{id}/viewer', '\App\Http\Controllers\Auto3dprintqueueController@showGcodeViewer');
-
 
     });
 

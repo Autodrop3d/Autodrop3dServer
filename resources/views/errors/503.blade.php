@@ -3,7 +3,9 @@
     <head>
         <title>Be right back.</title>
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link href="{{asset('css/Lato.min.css')}}" rel="stylesheet">
+        <link href="{{asset('css/Catamaran.min.css')}}" rel="stylesheet">
+        <link href="{{asset('css/Muli.min.css')}}" rel="stylesheet">
 
         <style>
             html, body {

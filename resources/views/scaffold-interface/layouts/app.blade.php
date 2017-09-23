@@ -8,16 +8,16 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href={{asset('css/bootstrap.min.css')}}>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href={{asset('css/font-awesome.min.css')}}>
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href={{asset('css/ionicons.min.css')}}>
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{url('css/AdminLTE.min.css')}}">
-    <link rel="stylesheet" href="{{url('css/skin-blue.min.css')}}">
-    <link rel="stylesheet" href="{{url('css/fullcalendar.css')}}">
-    <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/skin-blue.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/fullcalendar.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-datetimepicker.min.css')}}">
     @stack('head')
 </head>
 <body class="hold-transition skin-blue">
@@ -31,11 +31,9 @@
 
     gtag('config', 'UA-18917320-7');
 </script>
-
-
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="{{url('/js/moment.js')}}"></script>
-<script src="{{url('/js/fullcalendar.js')}}"></script>
+<script src="{{url('/js/jquery-3.2.1.js')}}"></script>
+{{--<script src="{{url('/js/Moment.js')}}"></script>--}}
+{{--<script src="{{url('/js/fullcalendar.js')}}"></script>--}}
 <script src="{{url('/js/app.js')}}"></script>
 <div class="wrapper">
     <header class="main-header">
@@ -60,7 +58,7 @@
                         {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
                             {{--<i class="fa fa-bell-o"></i>--}}
                             {{--<span class="label notification-label">new</span>--}}
-                        {{--</a>--}}
+                          {{--</a>--}}
                         {{--<ul class="dropdown-menu">--}}
                             {{--<li class="header">Your notifications</li>--}}
                             {{--<li>--}}
@@ -153,11 +151,10 @@
 </div>
 <!-- Compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.5/js/demo.js"></script>
 <script> var baseURL = "{{ URL::to('/') }}"</script>
-<script src = "{{URL::asset('js/AjaxisBootstrap.js') }}"></script>
-<script src = "{{URL::asset('js/scaffold-interface-js/customA.js') }}"></script>
+<script src = "{{asset('js/AjaxisBootstrap.js') }}"></script>
+<script src = "{{asset('js/scaffold-interface-js/customA.js') }}"></script>
 <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
 
 <script>
@@ -186,8 +183,5 @@
     });
 </script>
 @stack('script')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"></script>
-<script src="{{url('js/bootstrap-datetimepicker.min.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.5/js/app.min.js"></script>
 </body>
 </html>

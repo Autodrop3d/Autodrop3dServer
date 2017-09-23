@@ -7,27 +7,27 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href={{asset('css/bootstrap.min.css')}}>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href={{asset('css/font-awesome.min.css')}}>
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href={{asset('css/ionicons.min.css')}}>
     <!-- Theme style -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.5/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.5/css/skins/skin-blue.min.css">
-    <link rel="stylesheet" href="{{url('css/fullcalendar.css')}}">
-    <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.min.css')}}">
+    <link rel="stylesheet" href={{asset('css/AdminLTE.min.css')}}>
+    <link rel="stylesheet" href={{asset('css/skin-blue.min.css')}}>
+    <link rel="stylesheet" href={{asset('css/fullcalendar.css')}}>
+    <link rel="stylesheet" href={{asset('css/bootstrap-datetimepicker.css')}}>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src={{asset('js/html5shiv.js')}}></script>
+    <script src={{asset('js/respond.js')}}></script>
     <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="{{url('/js/moment.js')}}"></script>
-<script src="{{url('/js/fullcalendar.js')}}"></script>
+<script src={{asset('js/jquery-3.2.1.js')}}></script>
+<script src={{asset('/js/Moment.js')}}></script>
+<script src={{asset('/js/fullcalendar.js')}}></script>
 <div class="wrapper" id="app">
     <header class="main-header">
         <!-- Logo -->
@@ -113,7 +113,7 @@
         {{--<!-- search form -->--}}
         {{--<form action="#" method="get" class="sidebar-form">--}}
         {{--<div class="input-group">--}}
-        {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
+        {{--<input type="text" name="auto3dprintqueue" class="form-control" placeholder="Search...">--}}
         {{--<span class="input-group-btn">--}}
         {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
         {{--</button>--}}
