@@ -182,6 +182,7 @@
         @stack('jquery.ready')
     });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.5/js/app.min.js"></script>
 @stack('script')
 </body>
 </html>
