@@ -150,7 +150,7 @@
     </div>
 </div>
 <!-- Compiled and minified JavaScript -->
-<script src="{{url('js/bootstrap.js')}}"></script>
+<script src="{{url('js/bootstrap.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.5/js/demo.js"></script>
 <script> var baseURL = "{{ URL::to('/') }}"</script>
 <script src = "{{asset('js/AjaxisBootstrap.js') }}"></script>
