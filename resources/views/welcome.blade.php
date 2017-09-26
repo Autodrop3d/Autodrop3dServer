@@ -94,7 +94,24 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="col-md-12">
+
+<p>As seen on</p>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="feature-item">
+                            <a href="https://hackaday.com/2017/06/24/hackaday-prize-entry-a-3d-printer-management-system/"><img  SRC="img/Hackaday_Logo.svg" style="  width: 100%;height: auto;"></img></a>
+                            </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="feature-item">
+                            <a href="https://3dprinting.com/news/prototype-ejection-system-allows-for-continuous-3d-printing/" ><img  SRC="img/3dprinting.com.png" style="  width: 100%;height: auto;"></img></a>
+
+                        </div>
+                    </div>
+
+                </div>
+        </div>
 </header>
 
 <section id="email" class="download bg-primary text-center">
