@@ -64,6 +64,20 @@ class Auto3dprintqueueController extends Controller
         return view('auto3dprintqueue.allprints', compact('auto3dprintqueues', 'title'));
     }
 
+
+
+    public function PrintingNowIndex()
+    {
+        $title = 'Index - 3D Print Queue (All Users)';
+        $auto3dprintqueues = Auto3dprintqueue::where('Status', 'like', 'Printing On%')->orderBy('created_at', 'dec')->paginate(6);
+
+        // \Auth::user()->id
+
+        return view('auto3dprintqueue.allprints', compact('auto3dprintqueues', 'title'));
+
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *

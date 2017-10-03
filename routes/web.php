@@ -55,6 +55,8 @@ Route::group(['middleware' => 'web'], function () {
 //auto3dprintqueue Routes
         Route::get('auto3dprintqueueall', '\App\Http\Controllers\Auto3dprintqueueController@AllUserindex');
 
+        Route::get('auto3dprintqueueprintingnow', '\App\Http\Controllers\Auto3dprintqueueController@PrintingNowIndex');
+
         Route::resource('auto3dprintqueue', '\App\Http\Controllers\Auto3dprintqueueController');
 
 
