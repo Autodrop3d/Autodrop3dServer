@@ -114,6 +114,21 @@
         </div>
 </header>
 
+<section id="kickStarter" class="download bg-primary text-center">
+    <div class="container">
+        <h2 class="section-heading">Check out our kick starter</h2>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-0">
+                <iframe width="480" height="270" src="https://www.kickstarter.com/projects/mmiscool/autodrop3d-unmanned-continuous-3d-printing/widget/video.html" frameborder="0" scrolling="no"> </iframe>
+            </div>
+            <div class="col-md-6 col-md-offset-0">
+                <iframe src="https://www.kickstarter.com/projects/mmiscool/autodrop3d-unmanned-continuous-3d-printing/widget/card.html?v=2" width="220" height="420" frameborder="0" scrolling="no"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <section id="email" class="download bg-primary text-center">
     <div class="container">
         <div class="row">
@@ -132,6 +147,9 @@
         </div>
     </div>
 </section>
+
+
+
 
 <section id="features" class="features">
     <div class="container">
