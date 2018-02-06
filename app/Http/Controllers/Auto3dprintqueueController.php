@@ -316,10 +316,9 @@ class Auto3dprintqueueController extends Controller
                     ";          :" . $auto3dprintqueue->user->name . "\n" .
                     ";User Phone:" . $auto3dprintqueue->user->phone . "\n" .
                     "; File Name:" . $auto3dprintqueue->Name . "\n" .
-                    ";" . "\n" .
-                    ";" . "\n" .
-                    ";" . "\n" .
-                    $myyfileout;
+                    ";" . $auto3dprintqueue->Infill . "\n" .
+                    ";" . $auto3dprintqueue->genenerateSupport . "\n" .
+                    ";" . "\n" . (($request->input('NoGcode', "") == true)? $myyfileout:"");
 
                 sendEmailReminder($auto3dprintqueue->id);
 
@@ -344,8 +343,8 @@ class Auto3dprintqueueController extends Controller
 
 
         if (file_exists("../storage/app/3dPrintFiles/" . $id . ".gcode") === FALSE) {
-            return response("<meta http-equiv=\"refresh\"
-   content=\"5\";> Please wait while model is sliced
+            return response("<meta http-equiv=\"refresh\" 
+content=\"5\";> Please wait while model is sliced
 
 
    <img src=\"../../../../auto3dprintqueue/" . $auto3dprintqueue->id . "/thumb.png\" ></img>", 200);
