@@ -318,7 +318,7 @@ class Auto3dprintqueueController extends Controller
                     "; File Name:" . $auto3dprintqueue->Name . "\n" .
                     ";" . $auto3dprintqueue->Infill . "\n" .
                     ";" . $auto3dprintqueue->genenerateSupport . "\n" .
-					";".$auto3dprintqueue->SizeX . ",". $auto3dprintqueue->SizeY . ",". $auto3dprintqueue->SizeZ . ",". 
+					";.".$auto3dprintqueue->SizeX . ".". $auto3dprintqueue->SizeY . ".". $auto3dprintqueue->SizeZ . ".". 
                     ";" . "\n" . (($request->input('NoGcode', "") === "true")? "":$myyfileout);
 
 
