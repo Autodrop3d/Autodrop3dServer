@@ -319,7 +319,7 @@ class Auto3dprintqueueController extends Controller
                     ";" . $auto3dprintqueue->Infill . "\n" .
                     ";" . $auto3dprintqueue->genenerateSupport . "\n" .
                     ";" . "\n" . (($request->input('NoGcode', "") === "true")? "":$myyfileout).
-					";".$auto3dprintqueue->SizeX . ",". $auto3dprintqueue->SizeY . ",". $auto3dprintqueue->SizeZ . ",". ;
+					";".$auto3dprintqueue->SizeX . ",". $auto3dprintqueue->SizeY . ",". $auto3dprintqueue->SizeZ . "," ;
 
                 sendEmailReminder($auto3dprintqueue->id);
 
