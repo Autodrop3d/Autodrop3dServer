@@ -162,13 +162,34 @@ class Auto3dprintqueueController extends Controller
         SliceModel($auto3dprintqueue->id);
 
 
-        //default pusher notification.
-        //by default channel=test-channel,event=test-event
-        //Here is a pusher notification example when you create a new resource in storage.
-        //you can modify anything you want or use it wherever.
-        $pusher->trigger('test-channel',
-            'test-event',
-            ['message' => 'A new auto3dprintqueue has been created !!']);
+
+
+        if ($request->Coppies && $request->Coppies >1)
+        {
+            for ($x = 2; $x <= $request->Coppies; $x++) {
+                $auto3dprintqueueExtra = new Auto3dprintqueue();
+                $auto3dprintqueueExtra->path =  $auto3dprintqueue->path;
+                $auto3dprintqueueExtra->Infill = $auto3dprintqueue->Infill;
+                $auto3dprintqueueExtra->Status = $auto3dprintqueue->Status;
+                $auto3dprintqueueExtra->Notified = $auto3dprintqueue->Notified;
+                $auto3dprintqueueExtra->genenerateSupport = $auto3dprintqueue->genenerateSupport;
+                $auto3dprintqueueExtra->auto3dprintercolor_id = $auto3dprintqueue->auto3dprintercolor_id;
+                $auto3dprintqueueExtra->auto3dprintmaterial_id = $auto3dprintqueue->auto3dprintmaterial_id;
+                $auto3dprintqueueExtra->user_id = $auto3dprintqueue->user_id;
+                $auto3dprintqueueExtra->Name = $auto3dprintqueue->Name;
+                $auto3dprintqueueExtra->save();
+
+
+                file_put_contents("../storage/app/3dPrintFiles/" . $auto3dprintqueueExtra->id . ".png",
+                    file_get_contents("../storage/app/3dPrintFiles/" . $auto3dprintqueue->id . ".png"));
+                file_put_contents("../storage/app/3dPrintFiles/" . $auto3dprintqueueExtra->id . ".gcode",
+                    file_get_contents("../storage/app/3dPrintFiles/" . $auto3dprintqueue->id . ".gcode"));
+
+            }
+
+        }
+
+
 
         return redirect('auto3dprintqueue/' . $auto3dprintqueue->id . "/");
     }

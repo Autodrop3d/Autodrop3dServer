@@ -28,6 +28,12 @@
         {{Form::select('genenerateSupport', array('1' => 'on', '0' => 'off'))}}
     </div>
 
+
+    <div class="form-group">
+        <label>Number Of Coppies</label>
+        {{Form::select('Coppies', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5'))}}
+    </div>
+
         <div class="form-group">
             <label for="Infill">Infill</label>
             <input id="Infill" name = "Infill" type="range" style="width:50%" min="20" max="99"  oninput="InfillOutput.value = Infill.value +'%'" value="20">
