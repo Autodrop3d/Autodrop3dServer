@@ -401,6 +401,22 @@ content=\"5\";> Please wait while model is sliced
         return view('auto3dprintqueue.edit', compact('title', 'auto3dprintqueue', 'auto3dprintmaterials', 'users'));
     }
 
+
+
+
+    public function EditSettings(Request $request)
+    {
+        if ($request->settingsFile  !== null)
+        {
+
+            file_put_contents("../Slic3r/cura.ini", $request->settingsFile);
+        }
+
+
+        $settingsFile = file_get_contents("../Slic3r/cura.ini");
+        return view('auto3dprintqueue.editSettings', compact('title', 'settingsFile'));
+    }
+
     /**
      * Update the specified resource in storage.
      *

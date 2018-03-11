@@ -35,6 +35,9 @@ Route::group(['middleware' => 'web'], function () {
 //these routes require the user to be logged in.
     Route::group(['middleware' => ['auth']], function () {
 
+        Route::get('slicerSettings', '\App\Http\Controllers\Auto3dprintqueueController@editSettings');
+
+
         //cadmodel Routes
         Route::group(['middleware'=> 'web'],function(){
             Route::resource('cadmodel','\App\Http\Controllers\CadmodelController');
