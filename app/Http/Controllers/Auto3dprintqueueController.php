@@ -177,8 +177,19 @@ class Auto3dprintqueueController extends Controller
                 $auto3dprintqueueExtra->auto3dprintmaterial_id = $auto3dprintqueue->auto3dprintmaterial_id;
                 $auto3dprintqueueExtra->user_id = $auto3dprintqueue->user_id;
                 $auto3dprintqueueExtra->Name = $auto3dprintqueue->Name;
+
+
+                $auto3dprintqueueExtra->SizeX = $auto3dprintqueue->SizeX;
+                $auto3dprintqueueExtra->SizeY = $auto3dprintqueue->SizeY;
+                $auto3dprintqueueExtra->SizeZ = $auto3dprintqueue->SizeZ;
+                $auto3dprintqueueExtra->filament_used = $auto3dprintqueue->filament_used;
+
                 $auto3dprintqueueExtra->save();
 
+
+//get filament quanity
+
+                $auto3dprintqueue1->filament_used = intval(trim(array_filter(explode(" ", $pieces[42]))[1]));
 
                 file_put_contents("../storage/app/3dPrintFiles/" . $auto3dprintqueueExtra->id . ".png",
                     file_get_contents("../storage/app/3dPrintFiles/" . $auto3dprintqueue->id . ".png"));
