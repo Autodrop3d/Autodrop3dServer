@@ -189,7 +189,7 @@ class Auto3dprintqueueController extends Controller
 
 //get filament quanity
 
-                $auto3dprintqueue1->filament_used = intval(trim(array_filter(explode(" ", $pieces[42]))[1]));
+
 
                 file_put_contents("../storage/app/3dPrintFiles/" . $auto3dprintqueueExtra->id . ".png",
                     file_get_contents("../storage/app/3dPrintFiles/" . $auto3dprintqueue->id . ".png"));
