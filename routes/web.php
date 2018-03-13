@@ -47,6 +47,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::post('cadmodel/{id}/updatemodelstl','\App\Http\Controllers\CadmodelController@updatemodelSTL');
             Route::get('cadmodel/{id}/delete','\App\Http\Controllers\CadmodelController@destroy');
             Route::get('cadmodel/{id}/deleteMsg','\App\Http\Controllers\CadmodelController@DeleteMsg');
+            Route::get('cadmodel/{id}/file.stl','\App\Http\Controllers\CadmodelController@showSTL');
         });
 
 //auto3dprintmaterial Routes

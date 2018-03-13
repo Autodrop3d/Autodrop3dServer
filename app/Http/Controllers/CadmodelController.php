@@ -111,6 +111,20 @@ class CadmodelController extends Controller
         return view('cadmodel.show',compact('title','cadmodel', 'agent'));
     }
 
+
+    public function showSTL($id, Request $request)
+    {
+        $title = 'Show - auto3dprintcue';
+
+        if ($request->ajax()) {
+            return URL::to('auto3dprintcue/' . $id);
+        }
+
+
+        $myyfileout = file_get_contents("../storage/app/3dCadModels/" . $id . ".stl");
+        return response($myyfileout, 200)->header('Content-Type', 'application/octet-stream');
+    }
+
     /**
      * Show the form for editing the specified resource.
      * @param    \Illuminate\Http\Request  $request
