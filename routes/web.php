@@ -38,6 +38,14 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('slicerSettings', '\App\Http\Controllers\Auto3dprintqueueController@editSettings');
 
 
+        Route::group(['middleware'=> 'web'],function(){
+            Route::resource('supplier','\App\Http\Controllers\SupplierController');
+            Route::post('supplier/{id}/update','\App\Http\Controllers\SupplierController@update');
+            Route::get('supplier/{id}/delete','\App\Http\Controllers\SupplierController@destroy');
+            Route::get('supplier/{id}/deleteMsg','\App\Http\Controllers\SupplierController@DeleteMsg');
+        });
+
+
         //cadmodel Routes
         Route::group(['middleware'=> 'web'],function(){
             Route::resource('cadmodel','\App\Http\Controllers\CadmodelController');
@@ -109,3 +117,6 @@ Route::get('test',function(){
 });
 
 Route::post('searchUsers','ScaffoldInterface\UserController@searchUser');
+
+//supplier Routes
+
