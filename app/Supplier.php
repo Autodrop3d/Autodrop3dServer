@@ -22,4 +22,38 @@ class Supplier extends Model
     protected $table = 'suppliers';
 
 	
+
+	/**
+     * cadmodel.
+     *
+     * @return  \Illuminate\Support\Collection;
+     */
+    public function cadmodels()
+    {
+        return $this->belongsToMany('App\Cadmodel');
+    }
+
+    /**
+     * Assign a cadmodel.
+     *
+     * @param  $cadmodel
+     * @return  mixed
+     */
+    public function assignCadmodel($cadmodel)
+    {
+        return $this->cadmodels()->attach($cadmodel);
+    }
+    /**
+     * Remove a cadmodel.
+     *
+     * @param  $cadmodel
+     * @return  mixed
+     */
+    public function removeCadmodel($cadmodel)
+    {
+        return $this->cadmodels()->detach($cadmodel);
+    }
+
+
+
 }

@@ -50,4 +50,37 @@ class Cadmodel extends Model
         return $this->belongsTo('App\User');
     }
 	
+
+	/**
+     * supplier.
+     *
+     * @return  \Illuminate\Support\Collection;
+     */
+    public function suppliers()
+    {
+        return $this->belongsToMany('App\Supplier');
+    }
+
+    /**
+     * Assign a supplier.
+     *
+     * @param  $supplier
+     * @return  mixed
+     */
+    public function assignSupplier($supplier)
+    {
+        return $this->suppliers()->attach($supplier);
+    }
+    /**
+     * Remove a supplier.
+     *
+     * @param  $supplier
+     * @return  mixed
+     */
+    public function removeSupplier($supplier)
+    {
+        return $this->suppliers()->detach($supplier);
+    }
+
+
 }
