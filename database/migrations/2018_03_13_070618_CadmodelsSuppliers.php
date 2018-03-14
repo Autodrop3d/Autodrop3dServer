@@ -18,6 +18,9 @@ class CadmodelsSuppliers extends Migration
 			$table->foreign('cadmodel_id')->references('id')->on('cadmodels')->onDelete('cascade');
 			$table->integer('supplier_id')->unsigned()->index();
 			$table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+
+            $table->float('price')->nullable();
+            $table->float('orderUnit')->nullable();
 			/**
 			 * Type your addition here
 			 *
