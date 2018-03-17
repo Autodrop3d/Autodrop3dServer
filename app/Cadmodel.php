@@ -58,7 +58,7 @@ class Cadmodel extends Model
      */
     public function suppliers()
     {
-        return $this->belongsToMany('App\Supplier');
+        return $this->belongsToMany('App\Supplier')->withPivot('price', 'orderUnit');
     }
 
     /**
