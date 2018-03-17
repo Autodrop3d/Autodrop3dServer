@@ -38,15 +38,22 @@
                                 <input id="Material" name="Material" type="text" class="form-control"
                                        value="{!!$cadmodel->Material!!}">
                             </div>
-<div>
-start of prices
 
-                            @foreach($cadmodel->suppliers() as $supplier)
-                                here is a price
-                                {!! $supplier->pivot('price')!!}
-                            @endforeach
-    end of prices
-                    </div>
+
+                            <div class="form-group">
+                                <label>Suppliers</label><br>
+
+                                @foreach($cadmodel->suppliers as $supplier)
+                                    <a href="{!!url("supplier/".$supplier->id  )  !!}">
+                                        {!! $supplier->name!!}
+                                    </a>
+
+
+                                    {!! $supplier->pivot->price!!}
+                                    <br>
+                                @endforeach
+
+                            </div>
 
 
                             <textarea id="ModelFile" name="ModelFile" style="display:none;"
