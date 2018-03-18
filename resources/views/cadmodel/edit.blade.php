@@ -49,7 +49,7 @@
                                     </a>
 
 
-                                    {!! $supplier->pivot->price!!}
+                                    {!! $supplier->pivot->price!!}   {!! $supplier->pivot->orderUnit!!}
                                     <br>
                                 @endforeach
 
