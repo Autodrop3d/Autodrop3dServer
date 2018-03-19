@@ -16,7 +16,7 @@
     "vue-resource": "^1.0.3"
   },
   "dependencies": {
-    "electron": "^1.7.6",
-    "electron-packager": "^9.0.1"
+    "electron": "^1.8.4",
+    "electron-packager": "^9.1.0"
   }
 }

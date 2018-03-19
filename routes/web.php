@@ -46,6 +46,18 @@ Route::group(['middleware' => 'web'], function () {
         });
 
 
+
+        //assemblystructure Routes
+        Route::group(['middleware'=> 'web'],function(){
+            Route::resource('assemblystructure','\App\Http\Controllers\AssemblystructureController');
+            Route::post('assemblystructure/{id}/update','\App\Http\Controllers\AssemblystructureController@update');
+            Route::get('assemblystructure/{id}/delete','\App\Http\Controllers\AssemblystructureController@destroy');
+            Route::get('assemblystructure/{id}/deleteMsg','\App\Http\Controllers\AssemblystructureController@DeleteMsg');
+        });
+
+
+
+
         //cadmodel Routes
         Route::group(['middleware'=> 'web'],function(){
             Route::resource('cadmodel','\App\Http\Controllers\CadmodelController');
@@ -56,6 +68,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('cadmodel/{id}/delete','\App\Http\Controllers\CadmodelController@destroy');
             Route::get('cadmodel/{id}/deleteMsg','\App\Http\Controllers\CadmodelController@DeleteMsg');
             Route::get('cadmodel/{id}/file.stl','\App\Http\Controllers\CadmodelController@showSTL');
+
         });
 
 //auto3dprintmaterial Routes
@@ -119,4 +132,6 @@ Route::get('test',function(){
 Route::post('searchUsers','ScaffoldInterface\UserController@searchUser');
 
 //supplier Routes
+
+
 
